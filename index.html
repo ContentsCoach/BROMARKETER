@@ -4,846 +4,412 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>지역 독점 블로그로 상담을 먼저 만들기</title>
-
   <style>
-    :root{
-      --bg:#0f0f12;
-      --panel:#14141a;
-      --panel2:#101015;
-      --text:#ffffff;
-      --muted:#cfcfd8;
-      --sub:#9ea0ad;
-      --line:#26262e;
-      --accent:#ff3b3b;
-      --ok:#22c55e;
-    }
-    *{box-sizing:border-box;margin:0;padding:0}
     body{
-      font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
-      background: radial-gradient(1200px 600px at 20% -10%, rgba(255,59,59,.14), transparent 60%),
-                  radial-gradient(900px 500px at 80% 0%, rgba(255,255,255,.06), transparent 55%),
-                  var(--bg);
-      color:var(--text);
-      line-height:1.65;
-      -webkit-font-smoothing:antialiased;
-      text-rendering:optimizeLegibility;
-    }
-    a{color:inherit}
-    .wrap{
-      max-width:820px;
-      margin:0 auto;
-      padding:26px 18px 88px;
-    }
-
-    /* Top */
-    .topbar{
-      position:sticky;
-      top:0;
-      z-index:10;
-      backdrop-filter: blur(10px);
-      background: rgba(15,15,18,.72);
-      border-bottom:1px solid rgba(38,38,46,.8);
-    }
-    .topbarInner{
-      max-width:820px;
-      margin:0 auto;
-      padding:12px 18px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-    }
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:7px 12px;
-      border:1px solid var(--line);
-      border-radius:999px;
-      background:rgba(255,255,255,.02);
-      font-size:13px;
-      color:#e7e7f2;
-      white-space:nowrap;
-    }
-    .dot{width:7px;height:7px;border-radius:99px;background:var(--accent)}
-    .topCtas{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-    }
-    .topBtn{
-      padding:10px 12px;
-      border-radius:10px;
-      text-decoration:none;
-      font-weight:900;
-      font-size:13px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.03);
-      color:#f1f1fb;
-    }
-    .topBtn.primary{
-      background:var(--accent);
-      border-color:rgba(255,255,255,.08);
-      color:#fff;
-    }
-
-    /* Sections */
-    section{margin-top:54px}
-    .sectionHead{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      margin-bottom:14px;
-    }
-    .kicker{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:6px 10px;
-      border:1px solid var(--line);
-      border-radius:999px;
-      background:rgba(255,255,255,.02);
-      font-size:12.5px;
-      color:#e8e8f2;
-    }
-    .kicker b{color:#fff}
-    .divider{
-      height:1px;
-      background:var(--line);
-      margin:18px 0;
-    }
-
-    /* Typography */
-    h1{
-      font-size:34px;
-      line-height:1.18;
-      letter-spacing:-0.45px;
-      margin:0 0 14px;
-    }
-    h2{
-      font-size:22px;
-      letter-spacing:-0.3px;
       margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+      background:#0f0f12;
+      color:#ffffff;
+      line-height:1.7;
     }
-    p{
-      font-size:16px;
-      color:var(--muted);
-      margin:0 0 12px;
-      word-break:keep-all;
+    .wrap{
+      max-width:760px;
+      margin:0 auto;
+      padding:28px 18px 70px;
     }
-    .strong{color:var(--text);font-weight:950}
-    .sub{color:var(--sub)}
-    .small{font-size:13px;color:var(--sub)}
-
-    /* Layout blocks */
-    .heroGrid{
-      display:grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap:14px;
-      align-items:stretch;
-    }
-    .card{
-      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,0));
-      border:1px solid var(--line);
-      border-radius:16px;
-      padding:18px;
-    }
-    .card.flat{
-      background: rgba(255,255,255,.02);
-    }
-
-    .heroCopy p{margin-bottom:12px}
-    .emBlock{
-      padding:14px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.08);
-      background: rgba(0,0,0,.22);
-      margin:14px 0;
-    }
-    .emBlock p:last-child{margin-bottom:0}
-
-    /* Profile */
-    .profileCard{
-      display:flex;
-      flex-direction:column;
-      gap:14px;
-      justify-content:space-between;
-      height:100%;
-    }
-    .profileImg{
-      border-radius:16px;
-      overflow:hidden;
-      border:1px solid var(--line);
-      background:var(--panel2);
-      aspect-ratio: 4 / 5;
-    }
-    .profileImg img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-    }
-    .profileMeta .name{
-      font-weight:1000;
-      font-size:16px;
-      margin-bottom:6px;
-      color:#fff;
-    }
-    .profileMeta .desc{
-      font-size:13.5px;
-      color:var(--sub);
-      line-height:1.45;
-    }
-
-    /* CTA rows */
-    .ctaRow{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top:14px;
-    }
-    .cta{
-      flex:1;
-      min-width:160px;
-      text-align:center;
-      padding:14px 14px;
-      border-radius:12px;
-      text-decoration:none;
-      font-weight:1000;
-      border:1px solid rgba(255,255,255,.10);
-      background:var(--accent);
-      color:#fff;
-    }
-    .cta.alt{
-      background:transparent;
-      border-color:rgba(255,59,59,.85);
-      color:var(--accent);
-    }
-    .cta.ghost{
-      background:transparent;
-      border-color:var(--line);
-      color:#e9e9f3;
-    }
-
-    /* Images */
+    h1{font-size:28px;line-height:1.25;margin:0 0 18px}
+    h2{font-size:20px;margin:28px 0 12px}
+    p{margin:0 0 12px;color:#d6d6df;font-size:16px}
+    .strong{color:#fff;font-weight:800}
+    .hr{height:1px;background:#2a2a33;margin:26px 0}
     .img{
       width:100%;
       display:block;
-      border-radius:16px;
-      border:1px solid var(--line);
-      background:var(--panel2);
+      border-radius:12px;
+      border:1px solid #2a2a33;
+      margin:12px 0 0;
+      background:#0b0b0f;
     }
-    .imgStack{display:grid;gap:12px;margin-top:12px}
-
-    /* Lists */
-    .bulletCard{
-      background:rgba(255,255,255,.02);
-      border:1px solid var(--line);
-      border-radius:16px;
-      padding:18px;
-    }
-    .bulletLine{
+    .profile{
       display:flex;
-      gap:10px;
-      align-items:flex-start;
-      margin-bottom:10px;
+      gap:14px;
+      align-items:center;
+      margin:16px 0 0;
     }
-    .bulletDot{
-      width:8px;height:8px;border-radius:999px;background:rgba(255,255,255,.22);
-      margin-top:9px;flex:0 0 auto;
-    }
-    .bulletLine p{margin:0}
-    .bulletLine:last-child{margin-bottom:0}
-
-    /* Career one-line feel (no ugly wrap blocks) */
-    .careerGrid{
-      display:grid;
-      gap:10px;
-    }
-    .careerItem{
-      padding:12px 14px;
+    .profile img{
+      width:92px;height:92px;
+      object-fit:cover;
       border-radius:14px;
-      border:1px solid rgba(255,255,255,.08);
-      background:rgba(0,0,0,.20);
-      color:#eef0ff;
-      font-weight:900;
-      font-size:14.5px;
-      line-height:1.35;
+      border:1px solid #2a2a33;
+      background:#0b0b0f;
     }
-
-    /* Offer */
-    .priceWrap{
-      display:grid;
-      gap:12px;
+    .small{font-size:13px;color:#a9a9b5;margin-top:10px}
+    .cta{
+      display:flex;gap:10px;flex-wrap:wrap;
       margin-top:14px;
     }
-    .priceCard{
-      border:1px solid var(--line);
-      border-radius:16px;
-      padding:18px;
-      background: rgba(255,255,255,.02);
-    }
-    .priceCard.reco{
-      border-color:rgba(255,59,59,.55);
-      box-shadow:0 18px 50px rgba(255,59,59,.10);
-    }
-    .priceTop{
-      display:flex;
-      align-items:baseline;
-      justify-content:space-between;
-      gap:12px;
-      margin-bottom:10px;
-    }
-    .price{
-      font-size:24px;
-      font-weight:1100;
-      letter-spacing:-0.2px;
-    }
-    .freq{
-      font-size:13px;
-      color:var(--sub);
-      white-space:nowrap;
-      font-weight:900;
-    }
-    .priceBody p{margin-bottom:10px}
-    .priceBody p:last-child{margin-bottom:0}
-
-    /* Refund */
-    .refund{
-      border:1px solid rgba(34,197,94,.45);
-      background: rgba(34,197,94,.08);
-      border-radius:16px;
-      padding:18px;
-    }
-    .refund .title{
-      font-size:20px;
-      font-weight:1100;
-      color:#eafff2;
-      line-height:1.25;
-      margin-bottom:10px;
-    }
-    .refund p{color:#c9f7db;font-weight:900}
-    .refund .final{color:#fff;font-weight:1100;margin-bottom:0}
-
-    /* Final */
-    .finalCard{
-      border-radius:18px;
-      padding:20px;
-      border:1px solid rgba(255,255,255,.10);
-      background: linear-gradient(180deg, rgba(255,59,59,.12), rgba(255,255,255,0) 55%);
-    }
-
-    footer{
-      border-top:1px solid var(--line);
-      margin-top:60px;
-      padding-top:18px;
+    .btn{
+      flex:1;
+      min-width:140px;
       text-align:center;
+      padding:14px 14px;
+      border-radius:10px;
+      text-decoration:none;
+      font-weight:800;
+      border:1px solid #2a2a33;
+      color:#fff;
+      background:#15151c;
+    }
+    .btn.primary{background:#ff3b3b;border-color:#ff3b3b}
+    .btn.ghost{background:transparent}
+    .footer{
+      margin-top:34px;
+      padding-top:22px;
+      border-top:1px solid #2a2a33;
       font-size:13px;
-      color:#8e8ea1;
-      line-height:1.55;
+      color:#9a9aaa;
+      text-align:center;
     }
-
-    @media (max-width:860px){
-      .heroGrid{grid-template-columns:1fr}
-      .topCtas{display:none}
-    }
-    @media (max-width:420px){
-      h1{font-size:30px}
-      .cta{min-width:0}
-      .profileImg{aspect-ratio: 16 / 10}
-    }
+    .list p{margin:0 0 8px}
   </style>
 </head>
 
 <body>
-  <!-- Sticky top -->
-  <div class="topbar">
-    <div class="topbarInner">
-      <div class="pill"><span class="dot"></span>헬스장·PT샵·필라테스 대표 전용</div>
-      <div class="topCtas">
-        <a class="topBtn primary" href="tel:01075790239">전화 문의</a>
-        <a class="topBtn" href="sms:01075790239">문자 문의</a>
-        <a class="topBtn" href="https://open.kakao.com/o/szijpW8h">카톡 문의</a>
-      </div>
-    </div>
-  </div>
-
   <main class="wrap">
 
     <!-- HERO -->
-    <section>
-      <div class="heroGrid">
-        <div class="card heroCopy">
-          <h1>
-            HERO<br><br>
-            헬스장·PT샵·필라테스 대표님,<br><br>
-            대표님 블로그 글을 읽고<br>
-            이미 ‘이 센터로 결정하고’ 오는 회원이 있습니다.
-          </h1>
+    <p class="strong">헬스장·PT샵·필라테스 대표님,</p>
+    <p>
+      대표님 블로그 글을 읽고<br>
+      이미 ‘이 센터로 결정하고’ 오는 회원이 있습니다.
+    </p>
+    <p>
+      그 회원은<br>
+      가격을 묻지 않습니다.<br>
+      비교도 하지 않습니다.
+    </p>
+    <p>
+      이미 마음속에서<br>
+      결정이 끝난 상태로<br>
+      센터를 방문합니다.
+    </p>
+    <p>
+      그런데 문제는,<br>
+      그런 회원을 만들어내는 센터가<br>
+      생각보다 많지 않다는 겁니다.
+    </p>
 
-          <div class="emBlock">
-            <p class="strong">
-              그 회원은<br>
-              가격을 묻지 않습니다.<br>
-              비교도 하지 않습니다.
-            </p>
-            <p class="strong">
-              이미 마음속에서<br>
-              결정이 끝난 상태로<br>
-              센터를 방문합니다.
-            </p>
-          </div>
+    <div class="hr"></div>
 
-          <p class="strong">
-            그런데 문제는,<br>
-            그런 회원을 만들어내는 센터가<br>
-            생각보다 많지 않다는 겁니다.
-          </p>
+    <h1>수업 잘하는 것과,<br>매출 나는 건 다릅니다.</h1>
 
-          <div class="divider"></div>
+    <p class="strong">
+      김주영 코치는<br>
+      한국체육대학교 학사·석사,<br>
+      현장 15년.
+    </p>
 
-          <p class="strong">
-            수업 잘하는 것과,<br>
-            매출 나는 건 다릅니다.
-          </p>
+    <p>
+      3천 명 이상의 데이터를 직접 다루며<br>
+      <strong class="strong">“왜 결제가 되는지”</strong>를<br>
+      우연이 아니라 구조로 만들어온 사람입니다.
+    </p>
 
-          <p class="strong">
-            김주영 코치는<br>
-            한국체육대학교 학사·석사,<br>
-            현장 15년.
-          </p>
+    <p>
+      대표님 센터 블로그를<br>
+      상위에 올리는 것부터 시작해,
+    </p>
 
-          <p class="strong">
-            3천 명 이상의 데이터를 직접 다루며<br>
-            <strong>“왜 결제가 되는지”</strong>를<br>
-            우연이 아니라 구조로 만들어온 사람입니다.
-          </p>
+    <p class="strong">
+      회원이 가격을 묻기 전에<br>
+      이미 <strong>‘이 센터여야 하는 이유’</strong>가<br>
+      머릿속에 만들어지게 하는 글만 작성합니다.
+    </p>
 
-          <p class="strong">
-            대표님 센터 블로그를<br>
-            상위에 올리는 것부터 시작해,
-          </p>
+    <p>
+      이 글을 읽고 계신 대표님은<br>
+      이미 다른 마케팅과 무엇이 다른지 느끼고 계실 겁니다.
+    </p>
 
-          <p class="strong">
-            회원이 가격을 묻기 전에<br>
-            이미 <strong>‘이 센터여야 하는 이유’</strong>가<br>
-            머릿속에 만들어지게 하는 글만 작성합니다.
-          </p>
+    <p class="small">※ 지역 독점은 선착순으로 적용됩니다.</p>
 
-          <p class="strong">
-            이 글을 읽고 계신 대표님은<br>
-            이미 다른 마케팅과<br>
-            무엇이 다른지 느끼고 계실 겁니다.
-          </p>
-
-          <p class="small">※ 지역 독점은 선착순으로 적용됩니다.</p>
-
-          <div class="ctaRow">
-            <a class="cta" href="tel:01075790239">전화 문의</a>
-            <a class="cta alt" href="sms:01075790239">문자 문의</a>
-            <a class="cta ghost" href="https://open.kakao.com/o/szijpW8h">카톡 문의</a>
-          </div>
-        </div>
-
-        <div class="card profileCard">
-          <div>
-            <div class="profileImg">
-              <img src="images/me.png" alt="김주영 코치" />
-            </div>
-            <div class="divider"></div>
-            <div class="profileMeta">
-              <div class="name">김주영 코치</div>
-              <div class="desc">
-                한국체육대학교 학사·석사 · 생체역학 전공<br>
-                현장 15년 · 3천 명+ 데이터 기반
-              </div>
-            </div>
-          </div>
-
-          <div class="ctaRow" style="margin-top:10px">
-            <a class="cta" href="tel:01075790239">바로 통화</a>
-            <a class="cta ghost" href="#price">가격 보기</a>
-          </div>
-        </div>
+    <div class="profile">
+      <!-- ✅ me.png 파일을 index.html과 "같은 폴더"에 두세요 -->
+      <img src="me.png" alt="김주영 코치">
+      <div>
+        <p class="strong" style="margin-bottom:6px">김주영 코치</p>
+        <p style="margin:0;color:#bdbdcc;font-size:14px;line-height:1.45">
+          한국체육대학교 학사·석사 · 현장 15년<br>
+          3천 명 데이터 기반
+        </p>
       </div>
-    </section>
+    </div>
+
+    <div class="cta">
+      <a class="btn primary" href="tel:01075790239">전화 문의</a>
+      <a class="btn" href="sms:01075790239">문자 문의</a>
+      <a class="btn ghost" href="https://open.kakao.com/o/szijpW8h" target="_blank" rel="noopener">카톡 문의</a>
+    </div>
+
+    <div class="hr"></div>
 
     <!-- PROOF ① -->
-    <section>
-      <div class="sectionHead">
-        <div class="kicker"><span class="dot"></span><b>PROOF ①</b></div>
-      </div>
+    <h2>PROOF ①</h2>
+    <p class="strong">검색 결과가 증명합니다.</p>
 
-      <div class="card flat">
-        <h2>검색 결과가 증명합니다.</h2>
+    <p>
+      작업 시작 7일 만에,<br>
+      단 7개 포스팅으로<br>
+      13개 키워드를 상위에 올렸습니다.
+    </p>
 
-        <div class="divider"></div>
+    <p>2025년 4월 기준 캡쳐.</p>
 
-        <p class="strong">
-          작업 시작 7일 만에,<br>
-          단 7개 포스팅으로<br>
-          13개 키워드를 상위에 올렸습니다.
-        </p>
+    <p>
+      우연이 아니라,<br>
+      의도적으로 설계한 구조의 결과입니다.
+    </p>
 
-        <p class="strong">2025년 4월 기준 캡쳐.</p>
+    <p>
+      센터 블로그 상태를 먼저 진단한 뒤,<br>
+      노출 가능한 키워드만 선별해<br>
+      설계한 결과입니다.
+    </p>
 
-        <p class="strong">
-          우연이 아니라,<br>
-          의도적으로 설계한 구조의 결과입니다.
-        </p>
+    <p>
+      이 단계의 목적은 매출 폭발이 아닙니다.
+    </p>
 
-        <p class="strong">
-          센터 블로그 상태를 먼저 진단한 뒤,<br>
-          노출 가능한 키워드만 선별해<br>
-          설계한 결과입니다.
-        </p>
+    <p>
+      “이 동네에 이런 센터가 있다”는 인식을<br>
+      검색 사용자 머릿속에<br>
+      반복 노출로 각인시키는 단계입니다.
+    </p>
 
-        <div class="divider"></div>
+    <!-- ✅ proof-13-1.png, proof-13-2.png도 index.html과 같은 폴더 -->
+    <img class="img" src="proof-13-1.png" alt="PROOF ① - 13개 키워드 캡쳐 1">
+    <img class="img" src="proof-13-2.png" alt="PROOF ① - 13개 키워드 캡쳐 2">
 
-        <p class="strong">
-          이 단계의 목적은<br>
-          매출 폭발이 아닙니다.
-        </p>
-
-        <p class="strong" style="margin-bottom:0;">
-          “이 동네에 이런 센터가 있다”는 인식을<br>
-          검색 사용자 머릿속에<br>
-          반복 노출로 각인시키는 단계입니다.
-        </p>
-
-        <div class="imgStack">
-          <img class="img" src="images/proof-13-1.png" alt="PROOF ① 이미지 1" />
-          <img class="img" src="images/proof-13-2.png" alt="PROOF ① 이미지 2" />
-        </div>
-      </div>
-    </section>
+    <div class="hr"></div>
 
     <!-- PROOF ② -->
-    <section>
-      <div class="sectionHead">
-        <div class="kicker"><span class="dot"></span><b>PROOF ②</b></div>
-      </div>
+    <h2>PROOF ②</h2>
+    <p class="strong">이 구조는 다음 단계로 갑니다.</p>
 
-      <div class="card flat">
-        <p class="strong">
-          이 구조는<br>
-          다음 단계로 갑니다.
-        </p>
+    <p class="strong">상단 2~3개 슬롯 동시 점유.</p>
 
-        <div class="divider"></div>
+    <p>
+      같은 키워드를 검색해도<br>
+      대표님 센터 말고는 보이지 않게 만듭니다.
+    </p>
 
-        <p class="strong">상단 2~3개 슬롯 동시 점유.</p>
+    <p>
+      이 지점부터는 고객이 비교하지 않습니다.
+    </p>
 
-        <p class="strong">
-          같은 키워드를 검색해도<br>
-          대표님 센터 말고는<br>
-          보이지 않게 만듭니다.
-        </p>
+    <p class="strong">검색 = 대표님 센터가 됩니다.</p>
 
-        <p class="strong">
-          이 지점부터는<br>
-          고객이 비교하지 않습니다.
-        </p>
+    <p class="strong">
+      지금 문의하지 않으면,<br>
+      이 지역 키워드 장악은 옆 센터가 가져갑니다.
+    </p>
 
-        <p class="strong">
-          검색 = 대표님 센터가 됩니다.
-        </p>
+    <!-- ✅ proof-keyword.png도 index.html과 같은 폴더 -->
+    <img class="img" src="proof-keyword.png" alt="PROOF ② - 키워드 슬롯 장악 캡쳐">
 
-        <img class="img" src="images/proof-keyword.png" alt="PROOF ② 이미지" style="margin-top:12px;" />
+    <div class="cta">
+      <a class="btn primary" href="tel:01075790239">내 상권 문의하기</a>
+      <a class="btn" href="sms:01075790239">문자로 바로 문의</a>
+      <a class="btn ghost" href="https://open.kakao.com/o/szijpW8h" target="_blank" rel="noopener">카톡으로 문의</a>
+    </div>
 
-        <div class="divider"></div>
+    <div class="hr"></div>
 
-        <p class="strong" style="margin-bottom:0;">
-          지금 문의하지 않으면,<br>
-          이 지역 키워드 장악은<br>
-          옆 센터가 가져갑니다.
-        </p>
+    <!-- 신뢰 · 운영 경험 -->
+    <h2>신뢰 · 운영 경험</h2>
+    <p class="strong">센터를 직접 운영해본 사람만 압니다.</p>
+    <div class="list">
+      <p>PT샵 6년 직접 운영</p>
+      <p>월 순수익 최대 3천만 원 구조 경험</p>
+      <p>광고가 아니라 ‘검색 유입 → 상담 → 결제’로 만든 매출</p>
+    </div>
 
-        <div class="ctaRow">
-          <a class="cta" href="tel:01075790239">전화 문의</a>
-          <a class="cta alt" href="sms:01075790239">문자 문의</a>
-          <a class="cta ghost" href="https://open.kakao.com/o/szijpW8h">카톡 문의</a>
-        </div>
-      </div>
-    </section>
+    <p class="strong" style="margin-top:14px">
+      그래서 저는 노출만 되는 글이 아니라,<br>
+      상담 성공률이 달라지는 글을 씁니다.
+    </p>
 
-    <!-- TRUST -->
-    <section>
-      <div class="sectionHead">
-        <div class="kicker"><span class="dot"></span><b>신뢰 · 운영 경험</b></div>
-      </div>
+    <div class="hr"></div>
 
-      <div class="bulletCard">
-        <p class="strong">센터를 직접 운영해본 사람만 압니다.</p>
-        <div class="divider"></div>
+    <!-- 문제 인식 -->
+    <h2>문제 인식</h2>
 
-        <div class="bulletLine">
-          <span class="bulletDot"></span>
-          <p class="strong">PT샵 6년 직접 운영</p>
-        </div>
-        <div class="bulletLine">
-          <span class="bulletDot"></span>
-          <p class="strong">월 순수익 최대 3천만 원 구조 경험</p>
-        </div>
-        <div class="bulletLine">
-          <span class="bulletDot"></span>
-          <p class="strong">광고가 아니라 ‘검색 유입 → 상담 → 결제’로 만든 매출</p>
-        </div>
+    <p class="strong">
+      상담 회원이 “비싸다”고 말한다면,<br>
+      이미 진 겁니다.
+    </p>
 
-        <div class="divider"></div>
+    <p class="strong">
+      가격 문제가 아닙니다.<br>
+      전문성이 전달되지 않은 겁니다.
+    </p>
 
-        <p class="strong" style="margin-bottom:0;">
-          그래서 저는<br>
-          노출만 되는 글이 아니라,<br>
-          상담 성공률이 달라지는 글을 씁니다.
-        </p>
-      </div>
-    </section>
+    <p>
+      체험단, 직원, 대행사가 쓴 의미 없는 정보 글 하나가<br>
+      대표님의 커리어를 ‘동네 센터’로 만들어버립니다.
+    </p>
 
-    <!-- PAIN -->
-    <section>
-      <div class="sectionHead">
-        <div class="kicker"><span class="dot"></span><b>문제 인식</b></div>
-      </div>
+    <p>
+      그래서 상담 자리에서 대표님은 설명하고, 설득하고,<br>
+      결국 할인하게 됩니다.
+    </p>
 
-      <div class="card flat">
-        <p class="strong">
-          상담 회원이<br>
-          “비싸다”고 말한다면,<br>
-          이미 진 겁니다.
-        </p>
+    <p class="strong">김주영 코치의 글은 다릅니다.</p>
 
-        <p class="strong">
-          가격 문제가 아닙니다.<br>
-          전문성이 전달되지 않은 겁니다.
-        </p>
+    <p>
+      왜 이 통증이 생겼는지,<br>
+      왜 이 방식이 필요한지,<br>
+      왜 여기서 해결되는지를
+    </p>
 
-        <div class="divider"></div>
+    <p class="strong">
+      논문과 실제 데이터로<br>
+      회원 스스로 판단할 수 있게 만듭니다.
+    </p>
 
-        <p class="strong">
-          체험단, 직원, 대행사가 쓴<br>
-          의미 없는 정보 글 하나가<br>
-          대표님의 커리어를<br>
-          ‘동네 센터’로 만들어버립니다.
-        </p>
+    <p class="strong">
+      그래서 이 글을 읽고 온 회원은 상담에서<br>
+      가격부터 묻지 않습니다.
+    </p>
 
-        <p class="strong">
-          그래서 상담 자리에서<br>
-          대표님은 설명하고, 설득하고,<br>
-          결국 할인하게 됩니다.
-        </p>
+    <div class="cta">
+      <a class="btn primary" href="tel:01075790239">상담 프리패스 글쓰기 문의</a>
+      <a class="btn" href="sms:01075790239">문자로 문의</a>
+    </div>
 
-        <div class="divider"></div>
+    <div class="hr"></div>
 
-        <p class="strong">김주영 코치의 글은 다릅니다.</p>
+    <!-- 경력 -->
+    <h2>경력 (원문 그대로)</h2>
+    <div class="list">
+      <p>한국체육대학교 학사·석사 (전공: 생체역학)</p>
+      <p>한국체육대학교 Motion Innovation Center 연구보조</p>
+      <p>보행·러닝·족저압 인솔 관련 논문 실험 및 장비개발 참여</p>
+      <p>KLPGA 프로골퍼 대상 스윙 분석 연구 학위논문</p>
+      <p>15년간 3천 명 이상의 현장 경험과 연구 데이터 융합</p>
+      <p>호텔신라 Advance Personal Trainer</p>
+      <p>삼성엔지니어링·삼성물산 임원 전담 트레이닝</p>
+      <p>TPI Korea 창립 멤버</p>
+      <p>2014 World Golf Fitness Summit 한국 대표</p>
+      <p>KPGA·KLPGA 프로골퍼 다수 트레이닝</p>
+    </div>
 
-        <p class="strong">
-          왜 이 통증이 생겼는지,<br>
-          왜 이 방식이 필요한지,<br>
-          왜 여기서 해결되는지를
-        </p>
+    <p class="strong" style="margin-top:14px">
+      그래서 저는 의미 없는 정보 글이 아니라,<br>
+      회원이 가격을 납득하는 글을 씁니다.
+    </p>
 
-        <p class="strong">
-          논문과 실제 데이터로<br>
-          회원 스스로 판단할 수 있게 만듭니다.
-        </p>
+    <div class="hr"></div>
 
-        <p class="strong" style="margin-bottom:0;">
-          그래서 이 글을 읽고 온 회원은<br>
-          상담에서 가격부터 묻지 않습니다.
-        </p>
-      </div>
-    </section>
+    <!-- 시스템 · 방식 -->
+    <h2>시스템 · 방식</h2>
+    <p class="strong">대표님은 수업만 하세요.</p>
 
-    <!-- CAREER -->
-    <section>
-      <div class="sectionHead">
-        <div class="kicker"><span class="dot"></span><b>경력 (원문 그대로)</b></div>
-      </div>
+    <p>
+      상권 분석, 키워드 선정, 기획과 집필까지 전부 제가 합니다.
+    </p>
 
-      <div class="careerGrid">
-        <div class="careerItem">한국체육대학교 학사·석사 (전공: 생체역학)</div>
-        <div class="careerItem">한국체육대학교 Motion Innovation Center 연구보조</div>
-        <div class="careerItem">보행·러닝·족저압 인솔 관련 논문 실험 및 장비개발 참여</div>
-        <div class="careerItem">KLPGA 프로골퍼 대상 스윙 분석 연구 학위논문</div>
-        <div class="careerItem">15년간 3천 명 이상의 현장 경험과 연구 데이터 융합</div>
-        <div class="careerItem">호텔신라 Advance Personal Trainer</div>
-        <div class="careerItem">삼성엔지니어링·삼성물산 임원 전담 트레이닝</div>
-        <div class="careerItem">TPI Korea 창립 멤버</div>
-        <div class="careerItem">2014 World Golf Fitness Summit 한국 대표</div>
-        <div class="careerItem">KPGA·KLPGA 프로골퍼 다수 트레이닝</div>
-      </div>
+    <p class="strong">
+      대표님이 하실 일은 복사 → 붙여넣기,<br>
+      3분이면 됩니다.
+    </p>
 
-      <div class="card flat" style="margin-top:12px">
-        <p class="strong" style="margin-bottom:0;">
-          그래서 저는<br>
-          의미 없는 정보 글이 아니라,<br>
-          회원이 가격을 납득하는 글을 씁니다.
-        </p>
-      </div>
-    </section>
+    <p>
+      밤 11시에 블로그 쓰는 시간,<br>
+      대표님 시급으로 계산해보면<br>
+      이 선택이 훨씬 싸다는 걸 바로 알게 됩니다.
+    </p>
 
-    <!-- SYSTEM -->
-    <section>
-      <div class="sectionHead">
-        <div class="kicker"><span class="dot"></span><b>시스템 · 방식</b></div>
-      </div>
+    <div class="hr"></div>
 
-      <div class="card flat">
-        <p class="strong">대표님은 수업만 하세요.</p>
+    <!-- 가격 -->
+    <h2>가격</h2>
+    <p class="strong">
+      이 가격은 ‘글 개수’가 아니라<br>
+      지역 키워드를 점유하는 비용입니다.
+    </p>
 
-        <div class="divider"></div>
+    <p class="strong">59만 원 / 주 3회 발행</p>
+    <p>상위 노출 구조를 만드는 단계입니다.</p>
+    <p>주 3회 발행은 글 하나 더 쓰는 게 아닙니다.</p>
+    <p>
+      네이버 검색 1페이지에 대표님 센터 글이<br>
+      2개 이상 동시에 노출될 확률을 만드는 구간입니다.
+    </p>
+    <p>
+      옆 센터로 갈 문의 2건 중 1건을 가져오는 구조가<br>
+      여기서 만들어집니다.
+    </p>
+    <p>문의가 ‘생기기 시작’하는 단계입니다.</p>
 
-        <p class="strong">
-          상권 분석, 키워드 선정,<br>
-          기획과 집필까지<br>
-          전부 제가 합니다.
-        </p>
+    <div class="hr"></div>
 
-        <p class="strong">
-          대표님이 하실 일은<br>
-          복사 → 붙여넣기,<br>
-          3분이면 됩니다.
-        </p>
+    <p class="strong">99만 원 / 주 5회 발행 (지역 독점)</p>
+    <p class="strong">이 단계부터는 조건이 완전히 달라집니다.</p>
+    <p>
+      같은 동네, 같은 키워드군 의뢰는 추가로 받지 않습니다.
+    </p>
+    <p>
+      어떤 키워드를 검색해도 대표님 센터만 보이게 만들어<br>
+      비교 자체를 없애는 단계입니다.
+    </p>
+    <p>
+      사실상 해당 지역 마케팅 직원을<br>
+      월 100만 원에 채용하는 효과입니다.
+    </p>
+    <p class="strong">한 동네, 한 센터만 남깁니다.</p>
 
-        <div class="divider"></div>
+    <p class="strong">
+      여기까지 보셨다면,<br>
+      왜 이 구조가 저단가로 팔릴 수 없는지<br>
+      이미 이해하셨을 겁니다.
+    </p>
 
-        <p class="strong" style="margin-bottom:0;">
-          밤 11시에 블로그 쓰는 시간,<br>
-          대표님 시급으로 계산해보면<br>
-          이 선택이 훨씬 싸다는 걸 바로 알게 됩니다.
-        </p>
-      </div>
-    </section>
+    <p class="small">※ VAT 별도 / 현금영수증 발행 가능</p>
 
-    <!-- PRICE -->
-    <section id="price">
-      <div class="sectionHead">
-        <div class="kicker"><span class="dot"></span><b>가격</b></div>
-      </div>
+    <div class="hr"></div>
 
-      <div class="card flat">
-        <p class="strong" style="margin-bottom:0;">
-          이 가격은<br>
-          ‘글 개수’가 아니라<br>
-          지역 키워드를 점유하는 비용입니다.
-        </p>
-      </div>
+    <!-- 환불 보장 -->
+    <h2>환불 보장</h2>
+    <p class="strong">
+      첫 원고 확인 후 불만족 시<br>
+      100% 환불해 드립니다.
+    </p>
 
-      <div class="priceWrap">
-        <div class="priceCard reco">
-          <div class="priceTop">
-            <div class="price">59만 원</div>
-            <div class="freq">주 3회 발행</div>
-          </div>
-          <div class="priceBody">
-            <p class="strong">상위 노출 구조를 만드는 단계입니다.</p>
-            <p class="strong">주 3회 발행은 글 하나 더 쓰는 게 아닙니다.</p>
-            <p class="strong">
-              네이버 검색 1페이지에<br>
-              대표님 센터 글이 2개 이상 동시에 노출될<br>
-              확률을 만드는 구간입니다.
-            </p>
-            <p class="strong">
-              옆 센터로 갈 문의 2건 중 1건을 가져오는 구조가<br>
-              여기서 만들어집니다.
-            </p>
-            <p class="strong" style="margin-bottom:0;">
-              문의가 ‘생기기 시작’하는 단계입니다.
-            </p>
-          </div>
-        </div>
+    <p class="strong">
+      이런 제안, 결과에 자신 없으면 절대 못 합니다.
+    </p>
 
-        <div class="priceCard">
-          <div class="priceTop">
-            <div class="price">99만 원</div>
-            <div class="freq">주 5회 발행 (지역 독점)</div>
-          </div>
-          <div class="priceBody">
-            <p class="strong">이 단계부터는 조건이 완전히 달라집니다.</p>
-            <p class="strong">
-              같은 동네, 같은 키워드군 의뢰는<br>
-              추가로 받지 않습니다.
-            </p>
-            <p class="strong">
-              어떤 키워드를 검색해도 대표님 센터만 보이게 만들어<br>
-              비교 자체를 없애는 단계입니다.
-            </p>
-            <p class="strong">
-              사실상 해당 지역 마케팅 직원을<br>
-              월 100만 원에 채용하는 효과입니다.
-            </p>
-            <p class="strong">
-              한 동네, 한 센터만 남깁니다.
-            </p>
+    <p class="strong">
+      판단은 대표님이 하시면 됩니다.<br>
+      리스크는 제가 가져갑니다.<br>
+      결과로 증명하겠습니다.
+    </p>
 
-            <div class="divider"></div>
+    <div class="hr"></div>
 
-            <p class="strong" style="margin-bottom:0;">
-              여기까지 보셨다면,<br>
-              왜 이 구조가 저단가로 팔릴 수 없는지<br>
-              이미 이해하셨을 겁니다.
-            </p>
-          </div>
-        </div>
-      </div>
+    <!-- 마감 -->
+    <h2>마감</h2>
+    <p class="strong">한 동네, 한 센터만 됩니다.</p>
+    <p class="strong">옆 센터가 먼저 선점하면 대표님 차례는 없습니다.</p>
 
-      <p class="small" style="margin-top:10px;">※ VAT 별도 / 현금영수증 발행 가능</p>
-    </section>
+    <div class="cta">
+      <a class="btn primary" href="tel:01075790239">전화 문의</a>
+      <a class="btn" href="sms:01075790239">문자 문의</a>
+      <a class="btn ghost" href="https://open.kakao.com/o/szijpW8h" target="_blank" rel="noopener">카톡 문의</a>
+    </div>
 
-    <!-- REFUND -->
-    <section>
-      <div class="sectionHead">
-        <div class="kicker"><span class="dot"></span><b>환불 보장</b></div>
-      </div>
-
-      <div class="refund">
-        <div class="title">
-          첫 원고 확인 후<br>
-          불만족 시 100% 환불해 드립니다.
-        </div>
-
-        <p class="strong">
-          이런 제안,<br>
-          결과에 자신 없으면 절대 못 합니다.
-        </p>
-
-        <p class="final strong">
-          판단은 대표님이 하시면 됩니다.<br>
-          리스크는 제가 가져갑니다.<br>
-          결과로 증명하겠습니다.
-        </p>
-      </div>
-    </section>
-
-    <!-- FINAL -->
-    <section>
-      <div class="finalCard">
-        <div class="sectionHead" style="margin-bottom:10px">
-          <div class="kicker"><span class="dot"></span><b>마감</b></div>
-        </div>
-
-        <p class="strong" style="font-size:20px;letter-spacing:-0.2px;margin-bottom:10px;">
-          한 동네,<br>
-          한 센터만 됩니다.
-        </p>
-
-        <p class="strong" style="margin-bottom:0;">
-          옆 센터가 먼저 선점하면<br>
-          대표님 차례는 없습니다.
-        </p>
-
-        <div class="ctaRow">
-          <a class="cta" href="tel:01075790239">전화 문의</a>
-          <a class="cta alt" href="sms:01075790239">문자 문의</a>
-          <a class="cta ghost" href="https://open.kakao.com/o/szijpW8h">카톡 문의</a>
-        </div>
-      </div>
-    </section>
-
-    <footer>
+    <footer class="footer">
       본 페이지는 마케팅 정보 제공 목적입니다.<br>
       검색 결과는 시점·지역·플랫폼 정책에 따라 달라질 수 있습니다.
     </footer>
