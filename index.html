@@ -3,419 +3,211 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>지역 독점 블로그로 상담을 먼저 만들기</title>
-
+<title>지역 검색 구조 설계</title>
 <style>
 body{
   margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
-  background:#0f0f12;
+  background:#000;
   color:#fff;
-  line-height:1.7;
-  word-break: keep-all;
+  font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+  line-height:1.6;
 }
 .container{
-  max-width:720px;
+  max-width:480px;
   margin:0 auto;
-  padding:60px 20px 100px;
+  padding:60px 20px 120px;
 }
-section{margin-bottom:120px}
-
-h1{font-size:38px; line-height:1.3; margin-bottom:40px; font-weight:900; letter-spacing: -1px;}
-h2{font-size:28px; margin-bottom:30px; font-weight:800; color:#fff; border-left:4px solid #00ff95; padding-left:15px;}
-
-p{font-size:18px; color:#aaa; margin-bottom:24px; font-weight: 400;}
-.emphasize{color:#fff; font-weight:700; font-size:20px; margin-bottom:24px; display: block;}
-.point-color{color:#00ff95; font-weight:900;}
-
-.badge{
-  display:inline-block;
-  font-size:14px;
-  font-weight:700;
-  padding:6px 16px;
-  background:#00ff95;
-  border-radius:4px;
-  margin-bottom:20px;
-  color:#000;
+section{
+  margin-bottom:100px;
 }
-
-.ctaRow{
-  display:flex;
-  flex-direction: column;
-  gap:12px;
-  margin-top:40px;
+h1{
+  font-size:34px;
+  line-height:1.3;
+  font-weight:800;
+  margin:0 0 30px;
+}
+h2{
+  font-size:26px;
+  font-weight:800;
+  margin:0 0 24px;
+}
+p{
+  font-size:17px;
+  color:#ccc;
+  margin:0 0 20px;
+}
+strong{
+  color:#fff;
+  font-weight:800;
+}
+ul{
+  padding-left:0;
+  margin:20px 0;
+}
+li{
+  list-style:none;
+  font-size:17px;
+  color:#ddd;
+  margin-bottom:12px;
+}
+.divider{
+  height:1px;
+  background:#222;
+  margin:60px 0;
+}
+.proof{
+  width:100%;
+  border-radius:10px;
+  border:1px solid #222;
+  margin-top:20px;
 }
 .cta{
-  text-align:center;
-  padding:22px;
-  background:#00ff95;
+  position:fixed;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
+  width:calc(100% - 40px);
+  max-width:440px;
+  background:#00ff84;
   color:#000;
-  font-weight:800;
-  font-size:20px;
+  text-align:center;
+  padding:18px;
+  font-size:18px;
+  font-weight:900;
   border-radius:12px;
   text-decoration:none;
-}
-.cta.alt{ background:#1a1a1e; color:#00ff95; border:1px solid #00ff95; }
-
-img{
-  width:100%;
-  border-radius:12px;
-  margin:30px 0;
-  border:1px solid #222;
-}
-
-/* --- 프로필 섹션 (사진 확대 및 레이아웃 수정) --- */
-.profile{
-  display:flex;
-  gap:25px;
-  align-items:center;
-  margin:40px 0;
-  padding:30px;
-  background:#1a1a1e;
-  border-radius:16px;
-  border: 1px solid #222;
-}
-.profile img{
-  width:140px; /* 요청하신 대로 비중 대폭 확대 */
-  height:140px;
-  border-radius:50%;
-  margin:0;
-  object-fit: cover;
-  border: 2px solid #00ff95;
-  flex-shrink: 0;
-}
-.profileName{ font-size:24px; font-weight:800; color:#fff; display:block; margin-bottom:6px; }
-.profileInfo{ font-size:16px; color:#888; line-height:1.5; }
-
-/* --- 경력 카드화 디자인 적용 --- */
-.career-container {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-.career-card {
-  background: #1a1a1e;
-  padding: 22px;
-  border-radius: 12px;
-  border-left: 4px solid #00ff95;
-}
-.career-card .card-title {
-  display: block;
-  font-size: 20px;
-  font-weight: 800;
-  color: #fff;
-  margin-bottom: 4px;
-  line-height: 1.4;
-}
-.career-card .card-sub {
-  display: block;
-  font-size: 14px;
-  color: #888;
-}
-.academic-list {
-  margin-top: 25px;
-  padding-left: 5px;
-}
-.academic-list p {
-  font-size: 16px;
-  margin-bottom: 12px;
-  color: #888;
-}
-
-.offerBox{
-  border:1px solid #333;
-  border-radius:20px;
-  padding:25px;
-  background:linear-gradient(145deg, #16161a, #0f0f12);
-}
-.priceCard{
-  border:1px solid #333;
-  border-radius:16px;
-  padding:25px;
-  margin-bottom:20px;
-  background:rgba(255,255,255,0.02);
-}
-.reco{ border:2px solid #00ff95; position:relative; }
-.recoBadge{
-  position:absolute; top:-12px; left:20px;
-  background:#00ff95; color:#000; font-size:12px; font-weight:900;
-  padding:2px 10px; border-radius:4px;
-}
-.priceTop{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:5px; }
-.price{ font-size:32px; font-weight:900; color:#fff; }
-.freq{ font-size:18px; color:#00ff95; font-weight:700; }
-.period-label{ display:block; font-size:14px; color:#888; margin-bottom:15px; }
-.value{ font-size:19px; font-weight:800; color:#fff; margin-bottom:10px; display:block; }
-.note{ font-size:15px; color:#777; margin-top:8px; line-height:1.5; }
-
-.refundBox{
-  border:2px dashed #22c55e;
-  background:rgba(34,197,94,0.05);
-  border-radius:20px;
-  padding:35px;
-  text-align:center;
-}
-.refundTitle{ font-size:22px; font-weight:900; color:#22c55e; margin-bottom:10px; }
-
-.footer{
-  border-top:1px solid #222;
-  padding:50px 0;
-  font-size:13px;
-  color:#555;
-  text-align:center;
 }
 </style>
 </head>
 
 <body>
-<main class="container">
-
-<div class="badge">헬스장·PT샵·필라테스 대표 전용</div>
+<div class="container">
 
 <section>
   <h1>
-    헬스장·PT샵·필라테스 대표님,<br><br>
-    처음부터<br>
-    <span class="point-color">‘이 센터로 결정하고’</span><br>
-    오는 고객이 있습니다.
-  </h1>
-  
-  <span class="emphasize">
-    그 고객은 가격을 묻지 않습니다.<br>
-    비교도 하지 않습니다.
-  </span>
-  
-  <span class="emphasize" style="font-size:24px;">
-    이미 마음속에서 결정이 끝난 상태로 센터를 방문합니다.
-  </span>
-
-  <p>
-    그런데 문제는, 그런 고객을 만들어내는 센터가 생각보다 많지 않다는 겁니다.
-  </p>
-</section>
-
-<section>
-  <h1>
-    수업 잘하는 것과,<br>
-    <span class="point-color">매출 나는 건 다릅니다.</span>
+    고객은 비교하지 않습니다.<br>
+    검색에서 결정합니다.
   </h1>
 
-  <span class="emphasize">
-    김주영 코치는 <br>한국체육대학교 학사·석사, 현장 15년.
-  </span>
+  <p>
+    이 검색 화면을 보고<br>
+    고객은 이미 선택을 끝냅니다.
+  </p>
+
+  <img src="proof-keyword.png" alt="검색 결과 캡쳐" class="proof">
+</section>
+
+<div class="divider"></div>
+
+<section>
+  <p>
+    지역 기반 매장의 문제는<br>
+    실력도, 가격도 아닙니다.
+  </p>
 
   <p>
-    3천 명 데이터를 직접 다루며 “왜 결제가 되는지”를 구조로 만들어온 사람입니다.
+    검색 결과에서 보이지 않는 것<br>
+    그게 전부입니다.
+  </p>
+</section>
+
+<div class="divider"></div>
+
+<section>
+  <p>
+    고객은 매장 안에서 고민하지 않습니다.<br>
+    검색 결과 화면에서 고릅니다.
   </p>
 
-  <span class="emphasize">
-    대표님 센터 블로그를 상위에 올리는 것부터 시작해,
-  </span>
+  <ul>
+    <li>• 여러 업체가 보이면 → 비교</li>
+    <li>• 비교가 시작되면 → 가격 질문</li>
+    <li>• 가격을 묻는 순간 → 이미 패배</li>
+  </ul>
+</section>
 
-  <span class="emphasize">
-    고객이 가격을 묻기 전에 이미 <span class="point-color">‘이 센터여야 하는 이유’</span>가 머릿속에 만들어지게 하는 글만 작성합니다.
-  </span>
+<div class="divider"></div>
+
+<section>
+  <p>
+    저는 광고를 하지 않습니다.<br>
+    콘텐츠를 ‘많이’ 만들지도 않습니다.
+  </p>
 
   <p>
-    이 글을 읽고 계신 대표님은 이미 다른 마케팅과 무엇이 다른지 느끼고 계실 겁니다.
+    검색 결과에서<br>
+    한 업체만 보이게 만드는 구조를 설계합니다.
   </p>
 
-  <div class="profile">
-    <img src="me.png" alt="김주영 코치">
-    <div class="profileText">
-      <span class="profileName">김주영 코치</span>
-      <span class="profileInfo">
-        한국체육대학교 학사·석사 <br>(운동역학 전공)<br>
-        현장 경력 15년 데이터 전문가
-      </span>
-    </div>
-  </div>
+  <ul>
+    <li>• 지역 키워드 다수 동시 점유</li>
+    <li>• 검색 화면에서 경쟁사 제거</li>
+    <li>• 비교 없이 바로 문의로 연결</li>
+  </ul>
 
-  <div class="ctaRow">
-    <a href="tel:01075790239" class="cta">전화 상담하기</a>
-    <a href="sms:01075790239" class="cta alt">문자로 문의하기</a>
-  </div>
+  <p><strong>검색 = 선택 완료</strong></p>
 </section>
 
+<div class="divider"></div>
+
 <section>
-  <h2>검색 결과가 증명합니다.</h2>
-
-  <span class="emphasize">
-    작업 시작 7일 만에, 단 7개 포스팅으로<br>
-    <span class="point-color">13개 키워드를 상위에 올렸습니다.</span>
-  </span>
-
-  <img src="proof-13-1.png" alt="상위노출 증명 1">
-  <img src="proof-13-2.png" alt="상위노출 증명 2">
-  
-  <p style="font-size:15px; text-align:center;">
-    2025년 4월 기준 캡쳐. <br>의도적으로 설계한 구조의 결과입니다.
+  <p>
+    이건 마케팅 성과가 아닙니다.<br>
+    검색 결과 구조를 바꾼 결과입니다.
   </p>
 
-  <span class="emphasize" style="margin-top:40px;">
-    이 단계의 목적은 단순 노출이 아닙니다.<br>
-    우리 동네 잠재 고객의 검색창을 우리 센터의 이름으로 ‘포위’하는 기초 공사입니다.
-  </span>
+  <img src="proof-keyword.png" alt="키워드 장악 캡쳐" class="proof">
 </section>
+
+<div class="divider"></div>
 
 <section>
-  <span class="emphasize" style="font-size:24px;">
-    2025년 9월, 이 구조는 <span class="point-color">‘장악’ 단계</span>로 갑니다.
-  </span>
+  <p>
+    이 구조는<br>
+    업종이 아니라 ‘지역 검색’이 있는 곳이면 전부 적용됩니다.
+  </p>
 
-  <span class="emphasize">
-    상단 2~3개 슬롯 동시 점유. 같은 키워드를 검색해도 대표님 센터 말고는 보이지 않게 만듭니다.
-  </span>
-
-  <span class="emphasize">
-    이 지점부터는 고객이 비교하지 않습니다. <span class="point-color"><br>검색 = 대표님 센터가 됩니다.</span>
-  </span>
-
-  <img src="proof-keyword.png" alt="키워드 장악 증명">
-
-  <a href="https://open.kakao.com/o/szijpW8h" style="text-decoration:none;">
-    <p class="emphasize" style="color:#00ff95; border-bottom:2px solid #00ff95; display:inline-block;">[ 내 상권도 확인하기 ]</p>
-  </a>
+  <ul>
+    <li>• 동네 기반 사업</li>
+    <li>• 지역명을 포함해 검색되는 모든 업종</li>
+    <li>• 방문 / 예약 / 문의가 필요한 매장</li>
+  </ul>
 </section>
+
+<div class="divider"></div>
 
 <section>
-  <h2>직접 운영해본 사람만 압니다.</h2>
-  <p class="emphasize" style="margin-bottom:10px;">· PT샵 6년 직접 운영</p>
-  <p class="emphasize" style="margin-bottom:10px;">· 월 순수익 최대 3천만 원 구조 경험</p>
-  <p class="emphasize">· ‘검색 유입 → 상담 → 결제’로 만든 매출</p>
-  <br>
-  <span class="emphasize" style="font-size:24px;">
-    그래서 저는 “노출만 되는 글”이 아니라<br>
-    <span class="point-color">“상담 성공률이 달라지는 글”</span>을 씁니다.
-  </span>
+  <p>
+    이 구조가 만들어지면<br>
+    고객은 이렇게 바뀝니다.
+  </p>
+
+  <ul>
+    <li>• 가격부터 묻지 않습니다</li>
+    <li>• 비교하지 않습니다</li>
+    <li>• 이미 결정한 상태로 연락합니다</li>
+  </ul>
 </section>
 
-<section class="career-list">
-  <h2>김주영 코치 경력</h2>
-  <div class="career-container">
-    <div class="career-card">
-      <span class="card-title">삼성엔지니어링·삼성물산<br>부사장·전무·상무 전담 트레이닝</span>
-      <span class="card-sub">삼성 고위 임원진의 전담 트레이닝 경력</span>
-    </div>
-    <div class="career-card">
-      <span class="card-title">호텔신라<br>Advance Personal Trainer</span>
-      <span class="card-sub">호텔신라 인증 Advance 등급 전문가</span>
-    </div>
-    <div class="career-card">
-      <span class="card-title">KPGA·KLPGA 투어프로 다수 트레이닝</span>
-      <span class="card-sub">프로 선수들의 경기력 향상 및 재활 전담</span>
-    </div>
-  </div>
-
-  <div class="academic-list">
-    <p>· 한국체육대학교 학사·석사 (전공: 운동역학)</p>
-    <p>· 한국체육대학교 Motion Innovation Center 연구보조</p>
-    <p>· KLPGA 프로골퍼 대상 스윙 분석 연구 학위논문</p>
-    <p>· 15년간 3천 명 이상의 현장 경험과 연구 데이터 융합</p>
-    <p>· TPI Korea 창립 멤버</p>
-    <p>· 2014 World Golf Fitness Summit 한국 대표</p>
-  </div>
-</section>
+<div class="divider"></div>
 
 <section>
-  <h2>상담 고객이 “비싸다”고 말한다면,<br>이미 진 겁니다.</h2>
-
-  <span class="emphasize" style="font-size:24px;">
-    가격 문제가 아닙니다.<br>
-    <span class="point-color">전문성이 전달되지 않은 겁니다.</span>
-  </span>
+  <p><strong>그래서 이렇게 제안드립니다.</strong></p>
 
   <p>
-    체험단이나 대행사가 쓴 의미 없는 정보 글이 대표님의 전문성을 ‘동네 센터’로 전락시킵니다. 그래서 상담 자리에서 설득하고, 할인하게 되는 것이죠.
+    대표님 지역 기준<br>
+    검색 구조가 가능한지 먼저 확인해드립니다.
   </p>
 
-  <span class="emphasize" style="margin-top:40px;">
-    김주영 코치의 글은 다릅니다.
-  </span>
-
-  <span class="emphasize">
-    왜 이 통증이 생겼인지, 왜 이 방식이 필요한지를 <span class="point-color">논문과 데이터를 이용해 회원이 스스로 판단하게 만듭니다.</span>
-  </span>
-
-  <p>
-    이 글을 읽고 온 회원은 상담에서 가격부터 묻지 않습니다. 대표님의 권위가 이미 세워져 있기 때문입니다.
-  </p>
+  <ul>
+    <li>• 첫 구조 확인 후 진행 여부 결정</li>
+    <li>• 불가능한 상권은 진행하지 않습니다</li>
+  </ul>
 </section>
 
-<section style="background: rgba(255,255,255,0.05); padding: 40px 25px; border-radius: 20px; border: 1px dashed #444;">
-  <h2 style="border:none; padding:0; text-align:center; font-size:24px; margin-bottom:20px;">
-    광고비 수백 쓰면서 <br>
-    <span class="point-color">상담 한 건 안 들어오는 이유</span>
-  </h2>
-  <p style="text-align:center; color:#ddd; font-size:16px;">
-    전단지, 파워링크 광고에 돈을 쏟아부어도<br>문의가 없는 이유는 하나입니다. <br>
-    고객의 머릿속에 <b>'왜 이 센터여야만 하는가'</b>에 대한 답을 주지 못했기 때문입니다.
-  </p>
-  <span class="emphasize" style="text-align:center; color:#00ff95;">
-    의미 없는 상위 노출은 '지출'이지만,<br>
-    결정을 마친 고객을 부르는 글은 '매출'이 됩니다.
-  </span>
-  <p style="text-align:center; font-size:15px; color:#888; margin-top:10px;">
-    한 달에 PT 1~2건만 제대로 연결되어도 <br>
-    이 비용은 지출이 아니라<br> <b>수익을 위한 확실한 투자</b>가 됩니다.
-  </p>
-</section>
+</div>
 
-<section>
-  <h2>운영 플랜</h2>
-  <p style="font-size:15px; margin-bottom:20px;">※ [ 1차 모집 중 ] ｜ 50% 할인 적용 ｜ 잔여 자리 3곳</p>
+<a href="#" class="cta">내 지역 검색 구조 가능 여부 확인하기</a>
 
-  <div class="offerBox">
-    <div class="priceCard reco">
-      <div class="recoBadge">가장 많이 선택</div>
-      <div class="priceTop" style="display: flex; justify-content: space-between; align-items: center;">
-        <div class="price" style="font-size: 26px; white-space: nowrap;">
-          59만 원 <span style="font-size:13px; color:#888; font-weight:normal; margin-left:4px;">(VAT 별도)</span>
-        </div>
-        <div class="freq" style="white-space: nowrap; margin-left: 10px;">주 3회 발행</div>
-      </div>
-      <span class="period-label">총 12회 발행</span>
-      <span class="value">[상권 장악의 최소 기준]</span>
-      <p class="note">네이버 1페이지에 대표님 글이 2개 이상 동시 노출되는 구간입니다. 상담 문의가 안정됩니다.</p>
-    </div>
-
-    <div class="priceCard" style="margin-bottom:0;">
-      <div class="priceTop" style="display: flex; justify-content: space-between; align-items: center;">
-        <div class="price" style="font-size: 26px; white-space: nowrap;">
-          99만 원 <span style="font-size:13px; color:#888; font-weight:normal; margin-left:4px;">(VAT 별도)</span>
-        </div>
-        <div class="freq" style="white-space: nowrap; margin-left: 10px;">주 5회 발행</div>
-      </div>
-      <span class="period-label">총 20회 발행</span>
-      <span class="value">[지역 독점 / 상권 초토화]</span>
-      <p class="note">어떤 키워드를 검색해도 대표님만 보이게 합니다. 동일 상권 내 추가 의뢰를 받지 않는 독점권이 부여됩니다.</p>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="refundBox" style="display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 40px 20px;">
-    <p class="refundTitle" style="margin: 0 0 15px 0; line-height: 1.4;">첫 원고 확인 후<br> 불만족 시 100% 환불</p>
-    <span class="emphasize" style="text-align:center; margin: 0; line-height: 1.6; font-size: 18px;">
-      리스크는 제가 가져갑니다. <br>결과로 증명하겠습니다.
-    </span>
-  </div>
-</section>
-
-<section style="text-align:center;">
-  <h2>한 동네, 한 센터만 됩니다.</h2>
-  <div class="ctaRow">
-    <a href="tel:01075790239" class="cta">[ 우리 동네 독점권 선점하기 ]</a>
-    <a href="https://open.kakao.com/o/szijpW8h" class="cta alt">카카오톡으로 문의하기</a>
-  </div>
-  <p style="font-size:14px; color:#555; margin-top:20px;">지역 독점은 선착순으로 마감됩니다.</p>
-</section>
-
-<footer class="footer">
-  본 페이지는 마케팅 정보 제공 목적입니다.<br>
-  © 김주영 코치. All rights reserved.
-</footer>
-
-</main>
 </body>
 </html>
