@@ -2,107 +2,119 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>검색 구조 설계 - 김주영</title>
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
     <style>
         :root {
-            --main-blue: #0056FF; /* 신뢰의 블루 */
+            --main-blue: #0056FF;
             --text-black: #111111;
             --text-gray: #444444;
             --bg-white: #FFFFFF;
         }
 
+        /* 기본 설정 및 모바일 텍스트 최적화 */
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Pretendard', sans-serif;
+            font-family: 'Pretendard', -apple-system, sans-serif;
             background-color: var(--bg-white);
             color: var(--text-black);
-            line-height: 1.7;
-            word-break: keep-all;
+            line-height: 1.6;
+            word-break: keep-all; /* 단어 단위 줄바꿈으로 가독성 향상 */
+            -webkit-font-smoothing: antialiased;
         }
 
-        .wrapper { max-width: 700px; margin: 0 auto; padding: 0 24px; }
+        .wrapper { max-width: 600px; margin: 0 auto; padding: 0 20px; }
 
-        section { padding: 100px 0; text-align: center; }
+        section { padding: 60px 0; text-align: center; }
 
-        /* Typography Hierarchy */
-        h1 { font-size: 2.8rem; font-weight: 800; margin-bottom: 24px; letter-spacing: -0.03em; }
-        h2 { font-size: 2rem; font-weight: 700; margin-bottom: 20px; }
-        h3 { font-size: 1.4rem; font-weight: 700; margin-bottom: 15px; }
+        /* 모바일 위계 (Typography Hierarchy) */
+        h1 { font-size: 1.85rem; font-weight: 800; margin-bottom: 20px; letter-spacing: -0.04em; line-height: 1.35; }
+        h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 16px; letter-spacing: -0.03em; }
+        h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 12px; }
+        p { font-size: 1rem; color: var(--text-gray); margin: 0 0 15px 0; }
         
         .blue { color: var(--main-blue); }
-        .highlight { border-bottom: 4px solid rgba(0, 86, 255, 0.2); padding-bottom: 2px; }
+        .highlight { background: linear-gradient(to top, rgba(0, 86, 255, 0.1) 40%, transparent 40%); }
 
-        /* Images */
-        .img-box { margin: 40px 0; }
-        .proof-img { width: 100%; border-radius: 8px; border: 1px solid #eee; box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
-        .profile-img { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; margin-bottom: 24px; }
+        /* 모바일 이미지 최적화 */
+        .img-box { margin: 30px 0; width: 100%; }
+        .proof-img { 
+            width: 100%; 
+            height: auto; 
+            border-radius: 8px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            display: block;
+        }
+        .profile-img { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; }
 
-        /* Review Card */
-        .review-section { background-color: #f9f9f9; padding: 80px 0; }
-        .review-card { background: white; padding: 30px; border-radius: 12px; margin-bottom: 16px; text-align: left; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
-        .review-text { font-size: 1.15rem; font-weight: 600; margin-bottom: 8px; }
-        .review-author { font-size: 0.95rem; color: var(--main-blue); font-weight: 500; }
+        /* 후기 섹션 (모바일 카드 스타일) */
+        .review-section { background-color: #f8f9fb; padding: 60px 0; }
+        .review-card { background: white; padding: 20px; border-radius: 12px; margin-bottom: 12px; text-align: left; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
+        .review-text { font-size: 1.05rem; font-weight: 600; margin-bottom: 6px; line-height: 1.4; }
+        .review-author { font-size: 0.85rem; color: var(--main-blue); font-weight: 500; }
 
-        /* Button */
+        /* 모바일 최적화 버튼 (CTA) */
         .cta-btn {
             display: block;
             background: var(--main-blue);
             color: white;
-            padding: 24px;
-            font-size: 1.25rem;
+            padding: 18px 10px;
+            font-size: 1.15rem;
             font-weight: 700;
             text-decoration: none;
-            border-radius: 12px;
-            margin-top: 40px;
-            transition: 0.3s;
+            border-radius: 10px;
+            margin-top: 30px;
+            box-shadow: 0 8px 20px rgba(0, 86, 255, 0.2);
+            transition: all 0.2s ease;
         }
-        .cta-btn:hover { background: #0046dd; transform: translateY(-3px); }
+        .cta-btn:active { transform: scale(0.98); background: #0046dd; }
 
-        @media (max-width: 600px) {
-            h1 { font-size: 1.9rem; }
-            h2 { font-size: 1.5rem; }
-        }
+        /* 리스트 스타일 */
+        .feature-list { text-align: left; padding: 0; list-style: none; display: inline-block; }
+        .feature-list li { margin-bottom: 12px; font-weight: 500; font-size: 1.05rem; }
+        .feature-list li::before { content: "✓ "; color: var(--main-blue); font-weight: 900; }
+
+        /* 하단 고정 버튼 (옵션: 필요시 주석 해제) 
+        .fixed-footer { position: fixed; bottom: 0; left: 0; width: 100%; padding: 10px 20px; background: white; box-sizing: border-box; border-top: 1px solid #eee; }
+        */
     </style>
 </head>
 <body>
 
     <div class="wrapper">
-        <section>
-            <h1>고객은 비교하지 않습니다.<br><span class="blue">이미 이 화면에서</span> 선택을 끝냅니다.</h1>
-            <p style="font-size: 1.1rem; color: #666;">다산동 주요 키워드 실제 검색 결과 장악 사례</p>
+        <section style="padding-top: 40px;">
+            <h1>고객은 비교하지 않습니다.<br><span class="blue">이미 이 화면에서</span><br>선택을 끝냅니다.</h1>
+            <p>다산동 주요 키워드 실제 장악 사례</p>
             
             <div class="img-box">
                 <img src="proof-keyword.png" alt="다산동 검색 점유 사례" class="proof-img">
             </div>
 
-            <a href="#" class="cta-btn">내 지역 점유 가능 여부 확인하기</a>
+            <a href="#" class="cta-btn">내 지역 선점 가능 여부 확인하기</a>
         </section>
 
         <section>
             <h2>가격을 묻는 순간,<br><span class="highlight">이미 패배입니다.</span></h2>
-            <p>여러 업체가 섞여 보이면 고객은 '비교'를 숙제처럼 느낍니다.<br>
-            기준이 실력이 아닌 <span class="blue">가격</span>으로 변하는 순간,<br>
-            대표님은 선택지에서 제외됩니다.</p>
+            <p>비교가 시작되면 기준은 <span class="blue">가격</span>으로 변하고,<br>결국 최저가 전쟁에 끌려가게 됩니다.</p>
         </section>
     </div>
 
     <div class="review-section">
         <div class="wrapper">
-            <h3 style="text-align: center; margin-bottom: 40px;">구조를 바꾸면 고객의 첫 마디가 바뀝니다.</h3>
+            <h3 style="text-align: center; margin-bottom: 30px;">문의의 '질'이 바뀝니다.</h3>
             
             <div class="review-card">
-                <div class="review-text">"그전에는 ‘얼마예요?’만 왔는데, 지금은 ‘예약 가능할까요?’로 바뀌었어요."</div>
+                <div class="review-text">"얼마예요? 대신 예약 가능할까요? 로 바뀌었어요."</div>
                 <div class="review-author">– 네일샵 원장 / 경기 지역</div>
             </div>
             <div class="review-card">
-                <div class="review-text">"원래는 체험권 문의만 오던 고객이 이젠 아예 등록 의사를 가지고 들어옵니다."</div>
+                <div class="review-text">"체험권 문의만 오던 고객이 등록 의사를 가지고 옵니다."</div>
                 <div class="review-author">– 필라테스 센터 운영 / 서울 지역</div>
             </div>
             <div class="review-card">
-                <div class="review-text">"예전에는 ‘커트 얼마예요?’부터 시작했는데, 요즘은 ‘오늘 몇 시 예약돼요?’로 물어봅니다."</div>
+                <div class="review-text">"커트 얼마예요? 가 아니라 오늘 몇 시 돼요? 라고 묻습니다."</div>
                 <div class="review-author">– 미용실 원장 / 서울 지역</div>
             </div>
         </div>
@@ -110,22 +122,24 @@
 
     <div class="wrapper">
         <section>
-            <h2>해결은 광고가 아닙니다.<br><span class="blue">검색 화면을 바꾸는 구조 설계</span>입니다.</h2>
-            <p>단순 노출이 아닌 '지역 키워드 독점'을 통해<br>비교 없이 바로 문의로 연결되는 동선을 만듭니다.</p>
+            <h2>광고가 아닌<br><span class="blue">구조 설계</span>입니다.</h2>
+            <ul class="feature-list">
+                <li>지역 키워드 다수 동시 점유</li>
+                <li>경쟁사 노출 최소화 (비교 차단)</li>
+                <li>문의로 직결되는 검색 환경 설계</li>
+            </ul>
         </section>
 
-        <section>
+        <section style="background-color: #fdfdfd; border-radius: 20px;">
             <img src="me.png" alt="김주영 설계자" class="profile-img">
             <h3>김주영 | <span class="blue">검색 구조 설계자</span></h3>
-            <p>대표님의 지역 검색창 자체를 '독점 구조'로 설계합니다.<br>
-            <strong>지역당 딱 1곳만 협업하며,</strong><br>
-            이미 선점된 지역은 추가 진행이 불가능합니다.</p>
+            <p><strong>지역당 딱 1곳만 협업합니다.</strong><br>이미 선점된 지역은 추가 진행이 불가합니다.</p>
         </section>
 
-        <section style="padding-bottom: 150px;">
-            <h2>내 지역 검색 구조,<br>선점 가능한지 확인해 보세요.</h2>
-            <p>소요 시간 30초 이내</p>
-            <a href="#" class="cta-btn">지금 바로 가능 여부 확인하기</a>
+        <section style="padding-bottom: 100px;">
+            <h2>내 지역 검색 구조,<br>가능한지 확인해 보세요.</h2>
+            <p>(소요 시간 30초 이내)</p>
+            <a href="#" class="cta-btn">지금 바로 확인하기</a>
         </section>
     </div>
 
