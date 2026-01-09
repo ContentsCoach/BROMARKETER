@@ -9,7 +9,6 @@
         :root {
             --bg: #050505;
             --primary: #00ff84;
-            --secondary: #1a73e8; /* 이미지의 블루톤 반영 */
             --card-bg: #111111;
             --text-main: #ffffff;
             --text-sub: #999999;
@@ -23,33 +22,50 @@
         }
         .container { max-width: 480px; margin: 0 auto; padding: 0 20px; }
         
-        /* 섹션별 카드 스타일 */
         section { 
-            padding: 100px 0 60px 0; 
-            min-height: 70vh; 
+            padding: 80px 0 40px 0; 
+            min-height: 60vh; 
             display: flex; 
             flex-direction: column; 
             justify-content: center;
         }
         
-        /* 헤드라인 & 강조 */
         .tag { color: var(--primary); font-weight: 700; font-size: 0.9rem; margin-bottom: 12px; display: block; }
         h1 { font-size: 2.1rem; line-height: 1.35; font-weight: 800; margin: 0 0 24px 0; }
         h2 { font-size: 1.7rem; font-weight: 800; line-height: 1.4; margin: 0 0 20px 0; }
         .highlight { color: var(--primary); }
-        .blue-light { color: var(--secondary); text-shadow: 0 0 10px rgba(26, 115, 232, 0.5); }
         
-        /* 이미지 카드 (보내주신 형식 반영) */
+        /* 이미지 카드 및 일반 이미지 설정 */
         .image-card {
             background: linear-gradient(145deg, #111, #000);
             border-radius: 16px;
             padding: 30px 20px;
             border: 1px solid #222;
             margin: 20px 0;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+        .proof-img {
+            width: 100%;
+            border-radius: 12px;
+            border: 1px solid var(--primary);
+            margin: 20px 0;
+            display: block;
         }
         
-        /* 리스트 스타일 */
+        /* 프로필 영역 스타일 */
+        .profile-area {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary);
+            margin: 0 auto 20px auto;
+            display: block;
+        }
+
         .step-list { padding: 0; margin: 20px 0; }
         .step-item { 
             background: #1a1a1a; 
@@ -61,8 +77,8 @@
             align-items: center;
         }
         .step-item span { color: var(--primary); margin-right: 12px; font-size: 1.2rem; }
+        .step-item.focus { border: 1px solid var(--primary); }
 
-        /* 버튼 (고정 해제, 하단에만 위치) */
         .cta-area { padding: 60px 0 100px 0; text-align: center; }
         .btn { 
             display: inline-block; 
@@ -75,11 +91,8 @@
             font-weight: 800; 
             text-decoration: none; 
             font-size: 1.2rem;
-            transition: transform 0.2s;
         }
-        .btn:active { transform: scale(0.98); }
 
-        /* 하단 서브 문구 */
         .footer-note { font-size: 0.85rem; color: var(--text-sub); margin-top: 15px; }
     </style>
 </head>
@@ -93,36 +106,42 @@
     </section>
 
     <section>
-        <h2>가격을 묻는 순간,<br><span style="color:#ff4d4d;">이미 선택에서 밀린 겁니다.</span></h2>
+        <h2>가격을 묻는 순간,<br><span class="highlight">이미 선택에서 밀린 겁니다.</span></h2>
         <div class="image-card">
             <div class="step-item"><span>01</span> 여러 업체 노출 → 비교 시작</div>
             <div class="step-item"><span>02</span> 비교 시작 → 최저가 탐색</div>
-            <div class="step-item" style="border: 1px solid #ff4d4d;"><span>03</span> 가격 질문 → 수익 악화</div>
+            <div class="step-item focus"><span>03</span> 가격 질문 → 수익 악화</div>
         </div>
         <p>이 악순환을 끊는 유일한 방법은<br>비교 자체를 <span class="highlight">불가능하게 만드는 구조</span>입니다.</p>
     </section>
 
     <section>
         <span class="tag">The Strategy</span>
-        <h2>저는 글을 쓰지 않습니다.<br><span class="blue-light">상권 포위 구조</span>를 설계합니다.</h2>
-        <div class="image-card" style="border-color: var(--secondary);">
+        <h2>저는 글을 쓰지 않습니다.<br><span class="highlight">상권 장악 구조</span>를 설계합니다.</h2>
+        
+        <img src="proof-keyword.png" alt="상위노출 장악 증명" class="proof-img">
+        
+        <div class="image-card" style="border-color: var(--primary);">
             <p style="margin:0; font-weight: 700;">비교 없이 결제하는 3단계</p>
             <ul class="step-list">
-                <li style="margin-bottom:10px; list-style:none;">✅ 지역 키워드 압도적 점유</li>
-                <li style="margin-bottom:10px; list-style:none;">✅ 경쟁사가 보이지 않는 화면 설계</li>
-                <li style="margin-bottom:10px; list-style:none;">✅ 검색 즉시 '여기다' 확신 부여</li>
+                <li style="margin-bottom:10px; list-style:none;">1. 지역 키워드 압도적 점유</li>
+                <li style="margin-bottom:10px; list-style:none;">2. 경쟁사가 보이지 않는 화면 설계</li>
+                <li style="margin-bottom:10px; list-style:none;">3. 검색 즉시 '여기다' 확신 부여</li>
             </ul>
         </div>
     </section>
 
     <section>
-        <h2>경험해본 사람만이<br>구조를 만듭니다.</h2>
+        <div class="profile-area">
+            <img src="me.png" alt="김주영 코치" class="profile-img">
+            <h2>경험해본 사람만이<br>구조를 만듭니다.</h2>
+        </div>
         <div class="image-card">
             <p style="font-size: 1.1rem; font-weight: 700; margin-bottom:15px;">실전 경영자 김주영</p>
             <p style="color: var(--text-sub); font-size: 0.95rem;">
-                • PT샵 6년 운영 (월 순수익 3,000만 원 구조)<br>
-                • 15년 데이터 기반 구매 심리 분석<br>
-                • 상권 보호를 위해 지역당 1곳만 한정 협업
+                - PT샵 6년 운영 (월 순수익 3,000만 원 구조)<br>
+                - 15년 데이터 기반 구매 심리 분석<br>
+                - 상권 보호를 위해 지역당 1곳만 한정 협업
             </p>
         </div>
     </section>
@@ -131,7 +150,7 @@
         <h2>대표님의 상권도<br><span class="highlight">장악 가능할까요?</span></h2>
         <p style="margin-bottom: 30px; color: var(--text-sub);">불가능한 상권은 시작하지 않습니다.<br>구조 구축 가능 여부부터 확인하세요.</p>
         
-        <a href="#" class="btn">내 지역 구조 가능 여부 확인하기 →</a>
+        <a href="https://open.kakao.com/o/szijpW8h" class="btn">내 지역 구조 가능 여부 확인하기 →</a>
         
         <p class="footer-note">
             * 상권 보호를 위해 현재 상담 신청이 몰릴 경우<br>대기 시간이 발생할 수 있습니다.
