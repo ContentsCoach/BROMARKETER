@@ -3,139 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>검색 구조 설계 - 김주영</title>
+    <title>매출 만드는 검색 점유 - 김주영</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
     <style>
-        :root {
-            --main-blue: #0056FF;
-            --text-black: #111111;
-            --text-gray: #444444;
-            --bg-white: #FFFFFF;
+        :root { 
+            --main-blue: #0056FF; 
+            --text-black: #111111; 
+            --text-gray: #444444; 
+            --point-red: #FF3B30; 
+            --bg-light: #F8FAFF;
         }
 
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Pretendard', -apple-system, sans-serif;
-            background-color: var(--bg-white);
-            color: var(--text-black);
-            line-height: 1.6;
-            word-break: keep-all;
+        body { 
+            margin: 0; padding: 0; 
+            font-family: 'Pretendard', -apple-system, sans-serif; 
+            background-color: #fff; 
+            color: var(--text-black); 
+            line-height: 1.7; 
+            word-break: keep-all; 
             -webkit-font-smoothing: antialiased;
         }
 
         .wrapper { max-width: 600px; margin: 0 auto; padding: 0 20px; }
-
         section { padding: 60px 0; text-align: center; }
-
-        h1 { font-size: 1.85rem; font-weight: 800; margin-bottom: 20px; letter-spacing: -0.04em; line-height: 1.35; }
-        h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 16px; letter-spacing: -0.03em; }
+        
+        h1 { font-size: 1.85rem; font-weight: 800; line-height: 1.4; margin-bottom: 20px; letter-spacing: -0.04em; }
+        h2 { font-size: 1.6rem; font-weight: 700; margin-bottom: 18px; letter-spacing: -0.03em; }
         h3 { font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; }
         p { font-size: 1.05rem; color: var(--text-gray); margin: 0 0 15px 0; }
         
         .blue { color: var(--main-blue); }
+        .red { color: var(--point-red); font-weight: 800; }
         .highlight { background: linear-gradient(to top, rgba(0, 86, 255, 0.1) 40%, transparent 40%); }
 
-        .img-box { margin: 30px 0; width: 100%; }
-        .proof-img { 
-            width: 100%; 
-            height: auto; 
-            border-radius: 8px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            display: block;
-        }
-
-        /* [수정] 프로필 사진 크기 극대화 설정 */
+        .proof-img { width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); margin: 30px 0; display: block; }
+        
         .profile-img { 
-            width: 100%;           /* 부모 너비에 꽉 차게 */
-            max-width: 500px;      /* 너무 커지는 것 방지 */
-            height: auto;          /* 가로세로 비율 유지 */
-            border-radius: 12px;   /* 원형 대신 세련된 둥근 사각형 */
-            object-fit: cover; 
-            margin-bottom: 24px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1); /* 사진에 무게감 부여 */
+            width: 100%; 
+            max-width: 500px; 
+            height: auto; 
+            border-radius: 15px; 
+            margin-bottom: 30px; 
+            box-shadow: 0 15px 45px rgba(0,0,0,0.12); 
+            object-fit: cover;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .review-section { background-color: #f8f9fb; padding: 60px 0; }
-        .review-card { background: white; padding: 20px; border-radius: 12px; margin-bottom: 12px; text-align: left; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
-        .review-text { font-size: 1.05rem; font-weight: 600; margin-bottom: 6px; line-height: 1.4; }
-        .review-author { font-size: 0.85rem; color: var(--main-blue); font-weight: 500; }
+        .benefit-card {
+            background-color: var(--bg-light);
+            border-radius: 20px;
+            padding: 35px 20px;
+            margin: 40px 0;
+            border: 1px solid #E1E9FF;
+        }
+        .benefit-card h3 { font-size: 1.4rem; margin-top: 0; color: var(--main-blue); }
+        .benefit-card p { font-size: 1.15rem; font-weight: 700; margin-bottom: 0; }
+
+        .review-section { background-color: #f8f9fb; padding: 80px 0; }
+        .review-card { 
+            background: white; 
+            padding: 25px; 
+            border-radius: 15px; 
+            margin-bottom: 15px; 
+            text-align: left; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03); 
+            border-left: 5px solid var(--main-blue); 
+        }
 
         .cta-btn {
-            display: block;
-            background: var(--main-blue);
-            color: white;
-            padding: 20px 10px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            text-decoration: none;
-            border-radius: 12px;
-            margin-top: 30px;
-            box-shadow: 0 8px 20px rgba(0, 86, 255, 0.2);
+            display: block; 
+            background: var(--main-blue); 
+            color: white; 
+            padding: 22px;
+            font-size: 1.3rem; 
+            font-weight: 800; 
+            text-decoration: none; 
+            border-radius: 15px;
+            margin-top: 25px; 
+            box-shadow: 0 10px 25px rgba(0, 86, 255, 0.25);
             transition: all 0.2s ease;
         }
-        .cta-btn:active { transform: scale(0.98); background: #0046dd; }
-
-        .feature-list { text-align: left; padding: 0; list-style: none; display: inline-block; }
-        .feature-list li { margin-bottom: 12px; font-weight: 500; font-size: 1.05rem; }
-        .feature-list li::before { content: "✓ "; color: var(--main-blue); font-weight: 900; }
     </style>
 </head>
 <body>
 
     <div class="wrapper">
-        <section style="padding-top: 40px;">
-            <h1>고객은 비교하지 않습니다.<br><span class="blue">이미 이 화면에서</span><br>선택을 끝냅니다.</h1>
-            <p>다산동 주요 키워드 실제 장악 사례</p>
-            <div class="img-box">
-                <img src="proof-keyword.png" alt="다산동 검색 점유 사례" class="proof-img">
-            </div>
+        <section style="padding-top: 50px;">
+            <h1>고객은 비교하지 않습니다.<br><span class="blue">이미 이 화면에서</span> 선택을 끝냅니다.</h1>
+            <p>사장님 블로그를 1위로 만드는 전략 포스팅 사례</p>
+            <img src="proof-keyword.png" alt="블로그 장악 사례" class="proof-img">
             <a href="#" class="cta-btn">내 지역 선점 가능 여부 확인하기</a>
         </section>
 
         <section>
             <h2>가격을 묻는 순간,<br><span class="highlight">이미 패배입니다.</span></h2>
-            <p>비교가 시작되면 기준은 <span class="blue">가격</span>으로 변하고,<br>결국 최저가 전쟁에 끌려가게 됩니다.</p>
+            <p>남의 블로그 빌려 쓰기는 이제 그만두세요.<br>사장님의 블로그가 직접 상위를 장악해야 진짜 매출이 나옵니다.</p>
         </section>
     </div>
 
     <div class="review-section">
         <div class="wrapper">
-            <h3 style="text-align: center; margin-bottom: 30px;">문의의 '질'이 바뀝니다.</h3>
+            <h2 style="text-align: center; margin-bottom: 40px;">전문적인 원고의 힘, 실제 사례</h2>
+            
             <div class="review-card">
-                <div class="review-text">"얼마예요? 대신 예약 가능할까요? 로 바뀌었어요."</div>
-                <div class="review-author">– 네일샵 원장 / 경기 지역</div>
+                <p style="margin:0; font-size: 1.1rem; color: var(--text-black);"><strong>"보내준 원고를 그대로 올렸더니 바로 1등에 걸리네요. 문의 전화가 많아졌습니다."</strong></p>
+                <span class="blue" style="font-size: 0.9rem;">– PT샵 운영 / 경기 지역</span>
             </div>
+
             <div class="review-card">
-                <div class="review-text">"체험권 문의만 오던 고객이 등록 의사를 가지고 옵니다."</div>
-                <div class="review-author">– 필라테스 센터 운영 / 서울 지역</div>
+                <p style="margin:0; font-size: 1.1rem;"><strong>"그전에는 블로그에 뭘 써야 할지 막막했는데, 이제는 주시는 원고로 예약이 알아서 들어옵니다."</strong></p>
+                <span class="blue" style="font-size: 0.9rem;">– 네일샵 원장 / 경기 지역</span>
             </div>
+
             <div class="review-card">
-                <div class="review-text">"커트 얼마예요? 가 아니라 오늘 몇 시 돼요? 라고 묻습니다."</div>
-                <div class="review-author">– 미용실 원장 / 서울 지역</div>
+                <p style="margin:0; font-size: 1.1rem;"><strong>"사장인 저보다 저희 업종을 더 잘 이해하고 써주셔서 상위 노출이 너무 쉽습니다."</strong></p>
+                <span class="blue" style="font-size: 0.9rem;">– 미용실 원장 / 서울 지역</span>
+            </div>
+            
+            <div class="benefit-card">
+                <h3>📢 1차 지역 독점 파트너 모집</h3>
+                <p>정가 대비 <span class="blue">50% 특별 할인</span> 적용</p>
+                <p><span class="red">현재 마지막 남은 자리 : 3곳</span></p>
             </div>
         </div>
     </div>
 
     <div class="wrapper">
         <section>
-            <h2>광고가 아닌<br><span class="blue">구조 설계</span>입니다.</h2>
-            <ul class="feature-list">
-                <li>지역 키워드 다수 동시 점유</li>
-                <li>경쟁사 노출 최소화 (비교 차단)</li>
-                <li>문의로 직결되는 검색 환경 설계</li>
-            </ul>
+            <img src="me.png" alt="매출 코치 김주영" class="profile-img">
+            <h3>김주영 | <span class="blue">검색으로 매출을 만드는 코치</span></h3>
+            <p><strong>"제가 쓴 원고는 반드시 지역 키워드를 장악합니다."</strong><br>경쟁 방지를 위해 한 지역에 딱 한 업체하고만 일합니다.</p>
         </section>
 
-        <section style="background-color: #fafafa; border-radius: 24px; padding: 40px 20px;">
-            <img src="me.png" alt="김주영 설계자" class="profile-img">
-            <h3>김주영 | <span class="blue">검색 구조 설계자</span></h3>
-            <p><strong>지역당 딱 1곳만 협업합니다.</strong><br>이미 선점된 지역은 추가 진행이 불가합니다.</p>
-        </section>
-
-        <section style="padding-bottom: 100px;">
-            <h2>내 지역 검색 구조,<br>가능한지 확인해 보세요.</h2>
-            <p>(소요 시간 30초 이내)</p>
+        <section style="padding-bottom: 120px; border-top: 1px solid #eee;">
+            <p class="red" style="font-size: 0.95rem; margin-bottom: 10px;">※ 원고 퀄리티 유지를 위해 잔여 자리는 3석뿐입니다.</p>
+            <h2>50% 할인가로 내 지역 선점하기</h2>
             <a href="#" class="cta-btn">지금 바로 확인하기</a>
         </section>
     </div>
