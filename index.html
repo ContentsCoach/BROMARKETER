@@ -51,10 +51,24 @@
             margin-right: auto;
         }
 
-        /* [가시성 극대화] 혜택 카드 디자인 변경 */
+        /* [추가] 아이콘 프로세스 바 스타일 */
+        .process-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 40px 0;
+            padding: 25px 15px;
+            background: var(--bg-light);
+            border-radius: 20px;
+        }
+        .process-item { flex: 1; text-align: center; }
+        .process-icon { font-size: 1.6rem; margin-bottom: 8px; display: block; }
+        .process-label { font-size: 0.85rem; font-weight: 800; color: var(--main-blue); white-space: nowrap; }
+        .process-arrow { color: #BDC9E1; font-weight: bold; font-size: 1rem; }
+
         .benefit-card {
             background-color: #fff;
-            border: 2px solid var(--main-blue); /* 점선보다 실선이 더 공식적이고 강해 보임 */
+            border: 2px solid var(--main-blue); 
             border-radius: 20px;
             padding: 30px 20px;
             margin: 40px 0;
@@ -112,6 +126,28 @@
         <section>
             <h2>고객이 가격을 묻는 순간,<br><span class="highlight">이미 패배입니다.</span></h2>
             <p>검색 화면 전체를 사장님의 이름으로 장악하세요.<br>선택지가 하나뿐일 때, 고객은 반드시 예약을 합니다.</p>
+
+            <div class="process-container">
+                <div class="process-item">
+                    <span class="process-icon">🔍</span>
+                    <span class="process-label">검색</span>
+                </div>
+                <span class="process-arrow">→</span>
+                <div class="process-item">
+                    <span class="process-icon">📅</span>
+                    <span class="process-label">예약</span>
+                </div>
+                <span class="process-arrow">→</span>
+                <div class="process-item">
+                    <span class="process-icon">💳</span>
+                    <span class="process-label">결제</span>
+                </div>
+                <span class="process-arrow">→</span>
+                <div class="process-item">
+                    <span class="process-icon">📈</span>
+                    <span class="process-label">매출</span>
+                </div>
+            </div>
         </section>
     </div>
 
