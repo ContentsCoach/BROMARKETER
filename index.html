@@ -51,15 +51,27 @@
             margin-right: auto;
         }
 
+        /* [가시성 극대화] 혜택 카드 디자인 변경 */
         .benefit-card {
-            background-color: var(--bg-light);
+            background-color: #fff;
+            border: 2px solid var(--main-blue); /* 점선보다 실선이 더 공식적이고 강해 보임 */
             border-radius: 20px;
-            padding: 35px 20px;
+            padding: 30px 20px;
             margin: 40px 0;
-            border: 1px solid #E1E9FF;
+            box-shadow: 0 10px 30px rgba(0, 86, 255, 0.08);
         }
-        .benefit-card h3 { font-size: 1.4rem; margin-top: 0; color: var(--main-blue); }
-        .benefit-card p { font-size: 1.15rem; font-weight: 700; margin-bottom: 0; }
+        .benefit-tag {
+            display: inline-block;
+            background-color: var(--main-blue);
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        .benefit-card h3 { font-size: 1.5rem; margin: 10px 0; color: var(--text-black); }
+        .benefit-main { font-size: 1.8rem; font-weight: 900; line-height: 1.3; }
 
         .review-section { background-color: #f8f9fb; padding: 80px 0; }
         .review-card { 
@@ -99,7 +111,7 @@
 
         <section>
             <h2>가격을 묻는 순간,<br><span class="highlight">이미 패배입니다.</span></h2>
-            <p>남의 블로그 빌려 쓰기는 이제 그만두세요.<br>사장님의 블로그가 직접 상위를 장악해야 진짜 매출이 나옵니다.</p>
+            <p>남의 블로그 빌려 쓰기는 이제 그만두세요.<br>사장님의 블로그가 직접 상위를 장악해야 진짜 매출이 납니다.</p>
         </section>
     </div>
 
@@ -121,12 +133,6 @@
                 <p style="margin:0; font-size: 1.1rem;"><strong>"사장인 저보다 저희 업종을 더 잘 이해하고 써주셔서 상위 노출이 너무 쉽습니다."</strong></p>
                 <span class="blue" style="font-size: 0.9rem;">– 미용실 원장 / 서울 지역</span>
             </div>
-            
-            <div class="benefit-card">
-                <h3>📢 1차 지역 독점 파트너 모집</h3>
-                <p>정가 대비 <span class="blue">50% 특별 할인</span> 적용</p>
-                <p><span class="red">현재 마지막 남은 자리 : 3곳</span></p>
-            </div>
         </div>
     </div>
 
@@ -138,8 +144,16 @@
         </section>
 
         <section style="padding-bottom: 120px; border-top: 1px solid #eee;">
-            <p class="red" style="font-size: 0.95rem; margin-bottom: 10px;">※ 원고 퀄리티 유지를 위해 잔여 자리는 3석뿐입니다.</p>
-            <h2>50% 할인가로 내 지역 선점하기</h2>
+            <div class="benefit-card">
+                <div class="benefit-tag">1차 지역 독점 파트너십</div>
+                <div class="benefit-main">
+                    정가 대비 <span class="blue">50% 특별 할인</span><br>
+                    <span class="red">현재 마지막 남은 자리 : 3곳</span>
+                </div>
+            </div>
+
+            <p class="red" style="font-size: 0.95rem; margin-bottom: 10px;">※ 원고 퀄리티 유지를 위해 선착순으로 마감됩니다.</p>
+            <h2>내 지역 선점 가능 여부 확인</h2>
             <a href="#" class="cta-btn">지금 바로 확인하기</a>
         </section>
     </div>
