@@ -27,35 +27,17 @@
             background-color: #fff; 
             color: var(--text-black); 
             line-height: 1.7; 
-            /* [수정] 깨짐 방지의 핵심: 단어 단위가 아닌 글자 단위 줄바꿈 허용 */
-            word-break: normal; 
-            overflow-wrap: break-word;
+            word-break: keep-all; 
             -webkit-font-smoothing: antialiased;
         }
 
-        /* 1. 래퍼 여백 최적화 */
-        .wrapper { 
-            max-width: 600px; 
-            margin: 0 auto; 
-            padding: 0 24px; /* 좌우 여백을 균형감 있게 조정 */
-            box-sizing: border-box;
-            overflow: hidden;
-        }
-
-        section { padding: 50px 0; text-align: center; }
+        .wrapper { max-width: 600px; margin: 0 auto; padding: 0 20px; }
+        section { padding: 60px 0; text-align: center; }
         
         h1 { font-size: 1.85rem; font-weight: 800; line-height: 1.4; margin-bottom: 20px; letter-spacing: -0.04em; }
         h2 { font-size: 1.6rem; font-weight: 700; margin-bottom: 18px; letter-spacing: -0.03em; }
         h3 { font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; }
-        
-        /* [수정] 텍스트가 한쪽으로 쏠리지 않도록 양끝 정렬(justify) 적용 */
-        p { 
-            font-size: 1.05rem; 
-            color: var(--text-gray); 
-            margin: 0 0 15px 0; 
-            text-align: justify; 
-            text-justify: inter-character;
-        }
+        p { font-size: 1.05rem; color: var(--text-gray); margin: 0 0 15px 0; }
         
         .blue { color: var(--main-blue); }
         .red { color: var(--point-red); font-weight: 800; }
@@ -65,29 +47,16 @@
         
         .profile-img { 
             width: 100%; 
-            max-width: 100%; 
+            max-width: 500px; 
             height: auto; 
             border-radius: 15px; 
-            margin: 0 auto 30px auto; 
+            margin-bottom: 30px; 
             box-shadow: 0 15px 45px rgba(0,0,0,0.12); 
             object-fit: cover;
             display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
-
-        /* 2. 인포박스 레이아웃 유지 및 줄바꿈 보정 */
-        .info-box { 
-            background: var(--bg-light); 
-            padding: 30px 22px; 
-            border-radius: 20px; 
-            margin-bottom: 30px; 
-            text-align: left; 
-            box-sizing: border-box;
-        }
-        .info-box h2 { font-size: 1.5rem; color: var(--main-blue); margin-bottom: 20px; text-align: left; }
-        .info-box ul { list-style: none; padding: 0; margin: 0; }
-        .info-box li { margin-bottom: 25px; }
-        .info-box b { font-size: 1.15rem; display: block; margin-bottom: 5px; color: #000; letter-spacing: -0.02em; }
-        .info-box span { font-size: 1rem; color: var(--text-gray); display: block; line-height: 1.6; text-align: justify; }
 
         .process-container {
             display: flex;
@@ -107,7 +76,7 @@
             background-color: #fff;
             border: 2px solid var(--main-blue); 
             border-radius: 20px;
-            padding: 40px 20px;
+            padding: 30px 20px;
             margin: 40px 0;
             box-shadow: 0 10px 30px rgba(0, 86, 255, 0.08);
         }
@@ -121,12 +90,13 @@
             font-weight: 700;
             margin-bottom: 15px;
         }
+        .benefit-card h3 { font-size: 1.5rem; margin: 10px 0; color: var(--text-black); }
         .benefit-main { font-size: 1.8rem; font-weight: 900; line-height: 1.3; }
 
         .review-section { background-color: #f8f9fb; padding: 80px 0; }
         .review-card { 
             background: white; 
-            padding: 22px; 
+            padding: 25px; 
             border-radius: 15px; 
             margin-bottom: 15px; 
             text-align: left; 
@@ -143,14 +113,9 @@
             font-weight: 800; 
             text-decoration: none; 
             border-radius: 15px;
-            margin: 25px auto 0 auto; 
+            margin-top: 25px; 
             box-shadow: 0 10px 25px rgba(0, 86, 255, 0.25);
             transition: all 0.2s ease;
-        }
-
-        .profile-content {
-            text-align: left; 
-            box-sizing: border-box;
         }
     </style>
 </head>
@@ -159,14 +124,14 @@
     <div class="wrapper">
         <section style="padding-top: 50px;">
             <h1>고객은 비교하지 않습니다.<br><span class="blue">이미 이 화면에서</span> 선택을 끝냅니다.</h1>
-            <p style="text-align: center;">경쟁업체 대신 사장님을 선택하게 만드는 실제 화면</p>
-            <img src="./proof-keyword.png" alt="블로그 장악 사례" class="proof-img">
-            <a href="https://open.kakao.com/o/szijpW8h" class="cta-btn">내 지역 상담신청</a>
+            <p>경쟁업체 대신 사장님을 선택하게 만드는 실제 화면</p>
+            <img src="https://contentscoach.github.io/contentscoach/proof-keyword.png" alt="블로그 장악 사례" class="proof-img">
+            <a href="https://open.kakao.com/o/szijpW8h" class="cta-btn">내 지역 비어있나요?</a>
         </section>
 
         <section>
             <h2>고객이 가격을 묻는 순간,<br><span class="highlight">이미 패배입니다.</span></h2>
-            <p style="text-align: center;">검색 화면 전체를 사장님의 이름으로 장악하세요.<br>선택지가 하나뿐일 때, 고객은 반드시 결제 합니다.</p>
+            <p>검색 화면 전체를 사장님의 이름으로 장악하세요.<br>선택지가 하나뿐일 때, 고객은 반드시 결제 합니다.</p>
 
             <div class="process-container">
                 <div class="process-item">
@@ -197,22 +162,32 @@
             <h2 style="text-align: center; margin-bottom: 40px;">블로그 작성 후 실제 변화</h2>
             
             <div class="review-card">
-                <p style="margin:0; font-size: 1.1rem; color: var(--text-black); text-align: left;"><strong>"찔러보기 문의가 없어졌습니다. 이미 등록 결정을 한 고객이 찾아옵니다."</strong></p>
+                <p style="margin:0; font-size: 1.1rem; color: var(--text-black);"><strong>"찔러보기 문의가 없어졌습니다. 이미 등록 결정을 한 고객이 찾아옵니다."</strong></p>
                 <span class="blue" style="font-size: 0.9rem;">– PT샵 원장 / 경기 지역</span>
             </div>
 
             <div class="review-card">
-                <p style="margin:0; font-size: 1.1rem; text-align: left;"><strong>"가격 문의 대신 예약 가능 시간부터 물어봅니다."</strong></p>
+                <p style="margin:0; font-size: 1.1rem;"><strong>"가격 문의 대신 이번 주 예약 가능 시간부터 물어봅니다."</strong></p>
                 <span class="blue" style="font-size: 0.9rem;">– 네일샵 원장 / 경기 지역</span>
             </div>
 
             <div class="review-card">
-                <p style="margin:0; font-size: 1.1rem; text-align: left;"><strong>"어딜 검색해도 원장님만 나온다며 예약이 많아졌습니다."</strong></p>
+                <p style="margin:0; font-size: 1.1rem;"><strong>"어딜 검색해도 원장님만 나온다며 예약이 많아졌습니다."</strong></p>
                 <span class="blue" style="font-size: 0.9rem;">– 미용실 원장 / 서울 지역</span>
             </div>
 
             <div class="review-card">
-                <p style="margin:0; font-size: 1.1rem; text-align: left;"><strong>"상담도 안 했는데 이미 결제할 마음으로 오시네요."</strong></p>
+                <p style="margin:0; font-size: 1.1rem;"><strong>"블로그 하나 바꿨을 뿐인데 학부모님들 상담 신청이 끊이지 않습니다."</strong></p>
+                <span class="blue" style="font-size: 0.9rem;">– 학원 원장 / 서울 지역</span>
+            </div>
+
+            <div class="review-card">
+                <p style="margin:0; font-size: 1.1rem;"><strong>"고객들이 원장님 글 읽고 믿음이 가서 왔다고 해요. 너무 좋습니다."</strong></p>
+                <span class="blue" style="font-size: 0.9rem;">– 반영구 원장 / 인천 지역</span>
+            </div>
+
+            <div class="review-card">
+                <p style="margin:0; font-size: 1.1rem;"><strong>"상담도 안 했는데 이미 결제할 마음으로 오시네요."</strong></p>
                 <span class="blue" style="font-size: 0.9rem;">– 에스테틱 원장 / 경기 지역</span>
             </div>
         </div>
@@ -220,65 +195,24 @@
 
     <div class="wrapper">
         <section>
-            <div class="info-box">
-                <h2>어떻게 작업합니까?</h2>
-                <ul>
-                    <li>
-                        <b>키워드 추출</b>
-                        <span>남들 다 쓰는 키워드가 아닙니다. 사장님 동네에서 진짜로 결제 의사가 있는 고객들이 검색하는 단어만 추려냅니다.</span>
-                    </li>
-                    <li>
-                        <b>원고 작성</b>
-                        <span>제가 직접 씁니다. 단순히 노출만 시키는 게 아니라, 글을 읽은 사람이 "여기 어디야?" 하고 바로 전화하게 만드는 글을 씁니다.</span>
-                    </li>
-                    <li>
-                        <b>상권 점유</b>
-                        <span>한두 번 올리고 말지 않습니다. 고객이 검색했을 때 사장님 매장 이름이 계속 보이게끔 화면을 채워 나갑니다.</span>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="info-box">
-                <h2>결과는 언제 나옵니까?</h2>
-                <ul>
-                    <li>
-                        <b>작업 시작 후 1~2주</b>
-                        <span>타겟 키워드들이 검색 화면에 보이기 시작합니다.</span>
-                    </li>
-                    <li>
-                        <b>1개월 이내</b>
-                        <span>검색량과 노출이 쌓이면서 실제 문의 전화로 이어지는 단계입니다.</span>
-                    </li>
-                </ul>
-            </div>
+            <img src="https://contentscoach.github.io/contentscoach/me.png" alt="매출 코치 김주영" class="profile-img">
+            <h3>김주영 | <span class="blue">검색으로 매출을 만드는 사람</span></h3>
+            <p><strong>"제가 쓴 원고는 반드시 지역 키워드를 장악합니다."</strong><br>경쟁 방지를 위해 한 지역에 딱 한 업체하고만 일합니다.</p>
         </section>
 
-        <section style="padding-top: 40px;">
-            <img src="./me.png" alt="매출 코치 김주영" class="profile-img">
-            <h3>김주영 | <span class="blue">검색으로 매출 만드는 사람</span></h3>
-            <div class="profile-content">
-                <p style="text-align: left; font-size: 1.05rem; line-height: 1.8;">
-                    "책으로 배운 마케팅이 아닙니다. 저는 직접 매장을 운영하며 제 돈을 들여 매출을 만들어본 사람입니다."<br><br>
-                    마케팅 로직은 계속 바뀌지만, 고객이 지갑을 여는 <b>본질</b>은 변하지 않습니다. 제가 직접 현장에서 검증했던 기준 그대로 작업합니다.<br><br>
-                    <span class="blue" style="font-weight: 700;">"제가 쓴 원고는 반드시 지역 키워드를 장악합니다."</span><br>
-                    단, 경쟁 방지와 퀄리티 유지를 위해 <b>한 지역에 딱 한 업체하고만 일합니다.</b>
-                </p>
-            </div>
-        </section>
-
-        <section style="padding-bottom: 120px; padding-top: 20px;">
+        <section style="padding-bottom: 120px; border-top: 1px solid #eee;">
             <div class="benefit-card">
                 <div class="benefit-tag">1차 선착순 10명 모집</div>
                 <div class="benefit-main">
                     정가 대비 <span class="blue">50% 할인</span><br>
                     <span class="red">현재 남은 자리 : 3명</span>
                 </div>
-                <p style="margin-top:15px; font-weight:700; font-size:1.1rem; color:#333; text-align: center;">첫 원고 확인 후 불만족 시 <span style="border-bottom: 2px solid var(--point-red);">100% 환불</span></p>
+                <p style="margin-top:15px; font-weight:700; font-size:1.1rem; color:#333;">첫 원고 확인 후 불만족 시 <span style="border-bottom: 2px solid var(--point-red);">100% 환불</span></p>
             </div>
 
-            <p class="red" style="font-size: 0.95rem; margin-bottom: 10px; text-align: center;">※ 원고 퀄리티 유지를 위해 선착순으로 마감됩니다.</p>
+            <p class="red" style="font-size: 0.95rem; margin-bottom: 10px;">※ 원고 퀄리티 유지를 위해 선착순으로 마감됩니다.</p>
             <h2>내 지역 장악 가능 여부 확인</h2>
-            <a href="https://open.kakao.com/o/szijpW8h" class="cta-btn">지금 바로 상담신청</a>
+            <a href="https://open.kakao.com/o/szijpW8h" class="cta-btn">지금 바로 확인하기</a>
         </section>
     </div>
 
