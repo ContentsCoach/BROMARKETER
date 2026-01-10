@@ -27,25 +27,35 @@
             background-color: #fff; 
             color: var(--text-black); 
             line-height: 1.7; 
-            word-break: keep-all; 
+            /* [수정] 깨짐 방지의 핵심: 단어 단위가 아닌 글자 단위 줄바꿈 허용 */
+            word-break: normal; 
+            overflow-wrap: break-word;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* 1. 깨짐 방지를 위한 핵심 래퍼 수정 */
+        /* 1. 래퍼 여백 최적화 */
         .wrapper { 
             max-width: 600px; 
             margin: 0 auto; 
-            padding: 0 28px; /* 여백을 충분히 주어 글자가 화면 끝에 붙지 않게 함 */
+            padding: 0 24px; /* 좌우 여백을 균형감 있게 조정 */
             box-sizing: border-box;
             overflow: hidden;
         }
 
-        section { padding: 60px 0; text-align: center; }
+        section { padding: 50px 0; text-align: center; }
         
         h1 { font-size: 1.85rem; font-weight: 800; line-height: 1.4; margin-bottom: 20px; letter-spacing: -0.04em; }
         h2 { font-size: 1.6rem; font-weight: 700; margin-bottom: 18px; letter-spacing: -0.03em; }
         h3 { font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; }
-        p { font-size: 1.05rem; color: var(--text-gray); margin: 0 0 15px 0; }
+        
+        /* [수정] 텍스트가 한쪽으로 쏠리지 않도록 양끝 정렬(justify) 적용 */
+        p { 
+            font-size: 1.05rem; 
+            color: var(--text-gray); 
+            margin: 0 0 15px 0; 
+            text-align: justify; 
+            text-justify: inter-character;
+        }
         
         .blue { color: var(--main-blue); }
         .red { color: var(--point-red); font-weight: 800; }
@@ -64,28 +74,27 @@
             display: block;
         }
 
-        /* 2. 인포박스 레이아웃 최적화 */
+        /* 2. 인포박스 레이아웃 유지 및 줄바꿈 보정 */
         .info-box { 
             background: var(--bg-light); 
-            padding: 35px 25px; 
+            padding: 30px 22px; 
             border-radius: 20px; 
             margin-bottom: 30px; 
             text-align: left; 
             box-sizing: border-box;
         }
-        .info-box h2 { font-size: 1.5rem; color: var(--main-blue); margin-bottom: 20px; }
+        .info-box h2 { font-size: 1.5rem; color: var(--main-blue); margin-bottom: 20px; text-align: left; }
         .info-box ul { list-style: none; padding: 0; margin: 0; }
         .info-box li { margin-bottom: 25px; }
-        .info-box li:last-child { margin-bottom: 0; }
-        .info-box b { font-size: 1.15rem; display: block; margin-bottom: 8px; color: #000; letter-spacing: -0.02em; }
-        .info-box span { font-size: 1rem; color: var(--text-gray); display: block; line-height: 1.6; }
+        .info-box b { font-size: 1.15rem; display: block; margin-bottom: 5px; color: #000; letter-spacing: -0.02em; }
+        .info-box span { font-size: 1rem; color: var(--text-gray); display: block; line-height: 1.6; text-align: justify; }
 
         .process-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin: 40px 0;
-            padding: 25px 15px;
+            padding: 25px 10px;
             background: var(--bg-light);
             border-radius: 20px;
         }
@@ -117,7 +126,7 @@
         .review-section { background-color: #f8f9fb; padding: 80px 0; }
         .review-card { 
             background: white; 
-            padding: 25px; 
+            padding: 22px; 
             border-radius: 15px; 
             margin-bottom: 15px; 
             text-align: left; 
@@ -139,10 +148,8 @@
             transition: all 0.2s ease;
         }
 
-        /* 3. 프로필 본문 텍스트 정렬 보정 */
         .profile-content {
             text-align: left; 
-            padding: 0 5px; /* 미세 여백 추가로 시각적 중앙화 */
             box-sizing: border-box;
         }
     </style>
@@ -152,14 +159,14 @@
     <div class="wrapper">
         <section style="padding-top: 50px;">
             <h1>고객은 비교하지 않습니다.<br><span class="blue">이미 이 화면에서</span> 선택을 끝냅니다.</h1>
-            <p>경쟁업체 대신 사장님을 선택하게 만드는 실제 화면</p>
+            <p style="text-align: center;">경쟁업체 대신 사장님을 선택하게 만드는 실제 화면</p>
             <img src="./proof-keyword.png" alt="블로그 장악 사례" class="proof-img">
             <a href="https://open.kakao.com/o/szijpW8h" class="cta-btn">내 지역 상담신청</a>
         </section>
 
         <section>
             <h2>고객이 가격을 묻는 순간,<br><span class="highlight">이미 패배입니다.</span></h2>
-            <p>검색 화면 전체를 사장님의 이름으로 장악하세요.<br>선택지가 하나뿐일 때, 고객은 반드시 결제 합니다.</p>
+            <p style="text-align: center;">검색 화면 전체를 사장님의 이름으로 장악하세요.<br>선택지가 하나뿐일 때, 고객은 반드시 결제 합니다.</p>
 
             <div class="process-container">
                 <div class="process-item">
@@ -190,22 +197,22 @@
             <h2 style="text-align: center; margin-bottom: 40px;">블로그 작성 후 실제 변화</h2>
             
             <div class="review-card">
-                <p style="margin:0; font-size: 1.1rem; color: var(--text-black);"><strong>"찔러보기 문의가 없어졌습니다. 이미 등록 결정을 한 고객이 찾아옵니다."</strong></p>
+                <p style="margin:0; font-size: 1.1rem; color: var(--text-black); text-align: left;"><strong>"찔러보기 문의가 없어졌습니다. 이미 등록 결정을 한 고객이 찾아옵니다."</strong></p>
                 <span class="blue" style="font-size: 0.9rem;">– PT샵 원장 / 경기 지역</span>
             </div>
 
             <div class="review-card">
-                <p style="margin:0; font-size: 1.1rem;"><strong>"가격 문의 대신 예약 가능 시간부터 물어봅니다."</strong></p>
+                <p style="margin:0; font-size: 1.1rem; text-align: left;"><strong>"가격 문의 대신 예약 가능 시간부터 물어봅니다."</strong></p>
                 <span class="blue" style="font-size: 0.9rem;">– 네일샵 원장 / 경기 지역</span>
             </div>
 
             <div class="review-card">
-                <p style="margin:0; font-size: 1.1rem;"><strong>"어딜 검색해도 원장님만 나온다며 예약이 많아졌습니다."</strong></p>
+                <p style="margin:0; font-size: 1.1rem; text-align: left;"><strong>"어딜 검색해도 원장님만 나온다며 예약이 많아졌습니다."</strong></p>
                 <span class="blue" style="font-size: 0.9rem;">– 미용실 원장 / 서울 지역</span>
             </div>
 
             <div class="review-card">
-                <p style="margin:0; font-size: 1.1rem;"><strong>"상담도 안 했는데 이미 결제할 마음으로 오시네요."</strong></p>
+                <p style="margin:0; font-size: 1.1rem; text-align: left;"><strong>"상담도 안 했는데 이미 결제할 마음으로 오시네요."</strong></p>
                 <span class="blue" style="font-size: 0.9rem;">– 에스테틱 원장 / 경기 지역</span>
             </div>
         </div>
@@ -266,10 +273,10 @@
                     정가 대비 <span class="blue">50% 할인</span><br>
                     <span class="red">현재 남은 자리 : 3명</span>
                 </div>
-                <p style="margin-top:15px; font-weight:700; font-size:1.1rem; color:#333;">첫 원고 확인 후 불만족 시 <span style="border-bottom: 2px solid var(--point-red);">100% 환불</span></p>
+                <p style="margin-top:15px; font-weight:700; font-size:1.1rem; color:#333; text-align: center;">첫 원고 확인 후 불만족 시 <span style="border-bottom: 2px solid var(--point-red);">100% 환불</span></p>
             </div>
 
-            <p class="red" style="font-size: 0.95rem; margin-bottom: 10px;">※ 원고 퀄리티 유지를 위해 선착순으로 마감됩니다.</p>
+            <p class="red" style="font-size: 0.95rem; margin-bottom: 10px; text-align: center;">※ 원고 퀄리티 유지를 위해 선착순으로 마감됩니다.</p>
             <h2>내 지역 장악 가능 여부 확인</h2>
             <a href="https://open.kakao.com/o/szijpW8h" class="cta-btn">지금 바로 상담신청</a>
         </section>
