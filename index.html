@@ -6,214 +6,175 @@
 
   <meta property="og:type" content="website" />
   <meta property="og:title" content="검색하면 사장님 가게부터 나오게 만듭니다." />
-  <meta property="og:description" content="BRO MARKETER | 형이야마케터" />
+  <meta property="og:description" content="BRO MARKETER | 형이야마케터, 검색 결과로 매출 구조를 바꿉니다." />
   <meta property="og:image" content="bro-marketer-main.png" />
+  <meta property="og:url" content="https://contentscoach.github.io/contentscoach/" />
 
   <title>BRO MARKETER | 형이야마케터</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
 
   <style>
-    :root{
-      --main-yellow:#FFD400;
-      --text-black:#111;
-      --text-gray:#444;
+    :root {
+      --main-yellow: #FFD400;
+      --text-black: #111111;
+      --text-gray: #444444;
+      --bg-light: #FFFDF2;
     }
 
-    body{
-      margin:0;
-      font-family:'Pretendard',sans-serif;
-      color:var(--text-black);
-      line-height:1.7;
-      background:#fff;
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Pretendard', -apple-system, sans-serif;
+      background-color: #fff;
+      color: var(--text-black);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
     }
 
-    .wrapper{
-      max-width:600px;
-      margin:0 auto;
-      padding:0 20px;
-      box-sizing:border-box;
+    .wrapper {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 0 20px;
+      box-sizing: border-box;
     }
 
-    section{
-      padding:60px 0;
-      text-align:center;
+    section {
+      padding: 60px 0;
+      text-align: center;
     }
 
-    /* HERO */
-    .hero{
-      padding-top:40px;
-      padding-bottom:40px;
+    h1 {
+      font-size: 1.9rem;
+      font-weight: 900;
+      line-height: 1.35;
+      margin-bottom: 18px;
+      letter-spacing: -0.04em;
     }
 
-    h1{
-      font-size:1.9rem;
-      font-weight:900;
-      line-height:1.35;
-      margin-bottom:18px;
-      letter-spacing:-0.04em;
+    h2 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 18px;
     }
 
-    h2{
-      font-size:1.6rem;
-      font-weight:800;
-      margin-bottom:18px;
+    h3 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin-bottom: 10px;
     }
 
-    p{
-      font-size:1.05rem;
-      color:var(--text-gray);
-      margin:0 0 15px;
+    p {
+      font-size: 1.05rem;
+      color: var(--text-gray);
+      margin: 0 0 15px 0;
     }
 
-    .yellow{
-      background:var(--main-yellow);
-      padding:2px 6px;
-      font-weight:900;
+    .yellow {
+      background: var(--main-yellow);
+      padding: 2px 6px;
+      font-weight: 900;
     }
 
-    .highlight{
-      background:linear-gradient(to top,var(--main-yellow) 45%,transparent 45%);
+    .highlight {
+      background: linear-gradient(to top, var(--main-yellow) 45%, transparent 45%);
     }
 
-    .hero-img{
-      width:100%;
-      max-width:420px;
-      margin:0 auto 20px;
-      display:block;
+    .hero-img {
+      width: 100%;
+      max-width: 420px;
+      margin: 30px auto 10px;
+      display: block;
     }
 
-    .cta-btn{
-      display:block;
-      background:var(--main-yellow);
-      color:#111;
-      padding:22px;
-      font-size:1.3rem;
-      font-weight:900;
-      border-radius:15px;
-      text-decoration:none;
-      margin-top:22px;
+    .proof-img {
+      width: 100%;
+      border-radius: 12px;
+      margin: 30px 0;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
     }
 
-    /* PROCESS */
-    .process-container{
-      display:flex;
-      flex-direction:column;
-      gap:14px;
-      margin-top:40px;
+    .process-container {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin: 40px 0;
     }
 
-    .process-card{
-      border:2px solid #111;
-      border-radius:16px;
-      padding:26px 20px;
+    .process-card {
+      border: 2px solid var(--text-black);
+      border-radius: 16px;
+      padding: 26px 20px;
+      background: #fff;
     }
 
-    .step-tag{
-      font-size:0.75rem;
-      font-weight:900;
-      background:var(--main-yellow);
-      display:inline-block;
-      padding:3px 10px;
-      margin-bottom:6px;
+    .step-tag {
+      font-size: 0.75rem;
+      font-weight: 900;
+      background: var(--main-yellow);
+      display: inline-block;
+      padding: 3px 10px;
+      margin-bottom: 6px;
     }
 
-    .step-title{
-      font-size:1.2rem;
-      font-weight:900;
-      margin-bottom:6px;
+    .step-title {
+      font-size: 1.2rem;
+      font-weight: 900;
+      margin-bottom: 6px;
     }
 
-    .final-card{
-      background:var(--main-yellow);
+    .step-desc {
+      font-size: 1.05rem;
+      color: #111;
     }
 
-    /* PROOF */
-    .proof-img{
-      width:100%;
-      border-radius:12px;
-      margin:30px 0;
-      box-shadow:0 10px 30px rgba(0,0,0,0.08);
+    .final-card {
+      background: var(--main-yellow);
     }
 
-    /* REVIEW */
-    .review-section{
-      background:#fafafa;
-      padding:80px 0;
+    .review-section {
+      background: #fafafa;
+      padding: 80px 0;
     }
 
-    .result-chips{
-      display:flex;
-      flex-direction:column;
-      gap:14px;
-      margin:30px 0 40px;
+    .review-card {
+      background: #fff;
+      padding: 22px;
+      border-radius: 14px;
+      margin-bottom: 14px;
+      border-left: 6px solid var(--main-yellow);
+      text-align: left;
     }
 
-    .chip{
-      border:2px solid #111;
-      border-radius:999px;
-      padding:14px 20px;
-      font-size:1.05rem;
-      font-weight:900;
-      background:#fff;
+    .profile-img {
+      width: 100%;
+      max-width: 420px;
+      border-radius: 14px;
+      margin: 0 auto 25px;
+      display: block;
     }
 
-    .review-card{
-      background:#fff;
-      padding:20px;
-      border-radius:14px;
-      margin-bottom:12px;
-      border-left:6px solid var(--main-yellow);
-      text-align:left;
-      font-size:1.05rem;
-    }
-
-    .review-meta{
-      margin-top:6px;
-      font-size:0.9rem;
-      color:#666;
-      font-weight:700;
-    }
-
-    /* PROFILE */
-    .profile-img{
-      width:100%;
-      max-width:420px;
-      border-radius:14px;
-      margin:0 auto 25px;
-      display:block;
-    }
-
-    /* STANDARD */
-    .standard{
-      padding-top:80px;
-      padding-bottom:120px;
-      border-top:1px solid #eee;
-    }
-
-    .standard-line{
-      margin-bottom:10px;
-    }
-
-    .standard-strong{
-      font-size:1.2rem;
-      font-weight:900;
-      margin:30px 0 12px;
-    }
-
-    .standard-brand{
-      font-size:0.95rem;
-      color:#666;
-      font-weight:700;
+    .cta-btn {
+      display: block;
+      background: var(--main-yellow);
+      color: #111;
+      padding: 22px;
+      font-size: 1.3rem;
+      font-weight: 900;
+      border-radius: 15px;
+      text-decoration: none;
+      margin-top: 25px;
     }
   </style>
 </head>
 
 <body>
 
+<!-- ① 히어로 : 브랜드 -->
 <div class="wrapper">
-  <!-- HERO -->
-  <section class="hero">
-    <img src="bro-marketer-main.png" alt="BRO MARKETER 캐릭터" class="hero-img">
+  <section style="padding-top:50px;">
+    <img src="bro-marketer-main.png"
+         alt="BRO MARKETER 형이야마케터 캐릭터"
+         class="hero-img">
 
     <h1>
       검색하면<br>
@@ -228,7 +189,7 @@
     </a>
   </section>
 
-  <!-- PROBLEM + PROCESS -->
+  <!-- 문제 인식 -->
   <section>
     <h2>
       잘하는 가게는 많습니다.<br>
@@ -240,101 +201,108 @@
       신규 고객은 검색에서 결정합니다.
     </p>
 
+    <!-- 프로세스 -->
     <div class="process-container">
       <div class="process-card">
         <div class="step-tag">STEP 1</div>
         <div class="step-title">구조 정리</div>
-        검색에서 밀린 원인부터 잡습니다.
+        <div class="step-desc">
+          사장님 가게가 검색에 밀린 원인부터 정리합니다.
+        </div>
       </div>
 
       <div class="process-card">
         <div class="step-tag">STEP 2</div>
         <div class="step-title">상단 노출</div>
-        지역 검색 시 사장님 가게가 먼저 보이게 만듭니다.
+        <div class="step-desc">
+          지역 검색 시 사장님 이름이 먼저 보이게 만듭니다.
+        </div>
       </div>
 
       <div class="process-card">
         <div class="step-tag">STEP 3</div>
         <div class="step-title">노출 유지</div>
-        상단 위치를 계속 유지합니다.
+        <div class="step-desc">
+          검색 화면 상단 노출을 지속적으로 유지합니다.
+        </div>
       </div>
 
       <div class="process-card final-card">
         <div class="step-tag">RESULT</div>
         <div class="step-title">결과</div>
-        가격 묻지 않고 바로 예약합니다.
+        <div class="step-desc">
+          가격 묻지 않고 바로 예약하는 고객만 남습니다.
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- PROOF -->
+  <!-- 🔥 검색 결과 증거 -->
   <section>
     <h2>
       말로 설명하지 않습니다.<br>
       <span class="highlight">검색 화면으로 보여드립니다.</span>
     </h2>
-    <img src="proof-keyword.png" alt="검색 결과 증거" class="proof-img">
+
+    <img src="proof-keyword.png"
+         alt="BRO MARKETER 실제 검색 결과 장악 사례"
+         class="proof-img">
   </section>
 </div>
 
-<!-- REVIEW -->
+<!-- 후기 -->
 <div class="review-section">
   <div class="wrapper">
-    <h2>업종은 달라도<br>반응은 같습니다</h2>
+    <h2>검색 결과가 바뀐 뒤 실제 반응</h2>
 
-    <div class="result-chips">
-      <div class="chip">찔러보기 문의 사라짐</div>
-      <div class="chip">가격 문의 없음</div>
-      <div class="chip">예약부터 진행</div>
-    </div>
-
-    <div class="review-card">
-      “상담 없이 바로 결제합니다.”
-      <div class="review-meta">– PT샵 / 경기</div>
-    </div>
-
-    <div class="review-card">
-      “가격 얘기 안 합니다.”
-      <div class="review-meta">– 네일샵 / 경기</div>
-    </div>
-
-    <div class="review-card">
-      “검색하면 우리 가게만 나옵니다.”
-      <div class="review-meta">– 미용실 / 서울</div>
-    </div>
+    <div class="review-card">“찔러보기 문의가 사라졌습니다.”<br>– PT샵 / 경기</div>
+    <div class="review-card">“가격 얘기 없이 예약부터 묻습니다.”<br>– 네일샵 / 경기</div>
+    <div class="review-card">“검색하면 우리 가게만 나온대요.”<br>– 미용실 / 서울</div>
+    <div class="review-card">“상담 없이 바로 결제합니다.”<br>– 학원 / 서울</div>
+    <div class="review-card">“글 보고 이미 믿고 왔다고 합니다.”<br>– 에스테틱 / 경기</div>
   </div>
 </div>
 
-<!-- PROFILE + STANDARD -->
+<!-- 신뢰 -->
 <div class="wrapper">
   <section>
-    <img src="bro-marketer-real.png" alt="BRO MARKETER 실사" class="profile-img">
+    <img src="bro-marketer-real.png"
+         alt="BRO MARKETER 형이야마케터 실사"
+         class="profile-img">
+
+    <h3>BRO MARKETER</h3>
 
     <p>
       직접 매장 운영했고<br>
       검색 결과 하나로<br>
       <strong>월 순익 3천을 만들어봤습니다.</strong><br><br>
 
-      그래서 확신합니다.<br>
-      <strong>검색 결과가 바뀌면<br>매출이 먼저 바뀝니다.</strong><br><br>
+      광고 늘려도 문의만 늘고<br>
+      매출은 그대로인 상황도 겪어봤습니다.<br><br>
 
-      지금은 그 구조를<br>
-      사장님 가게에 그대로 씁니다.
+      그래서 확신합니다.<br>
+      <strong>검색 결과가 바뀌면<br>
+      매출이 먼저 바뀝니다.</strong><br><br>
+
+      지금은<br>
+      그 구조를 사장님 가게에 그대로 씁니다.
     </p>
   </section>
 
-  <section class="standard">
+  <!-- 결정 -->
+  <section style="padding-bottom:120px; border-top:1px solid #eee;">
     <h2>기준</h2>
 
-    <p class="standard-line">한 지역 한 업체</p>
-    <p class="standard-line">자리 없으면 진행하지 않습니다.</p>
-
-    <p class="standard-strong">
-      안 될 판이면<br>
-      애초에 시작 안 합니다.
+    <p>
+      한 지역 한 업체<br>
+      자리 없으면 진행하지 않습니다.
     </p>
 
-    <p class="standard-brand">BRO MARKETER 기준입니다.</p>
+    <p style="font-weight:900;">
+      안 될 판이면<br>
+      애초에 시작 안 합니다.<br>
+      <span style="font-weight:700;">BRO MARKETER 기준입니다.</span>
+    </p>
 
     <a href="https://open.kakao.com/o/szijpW8h" class="cta-btn">
       내 지역, 진행 가능한지 바로 확인
