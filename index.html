@@ -79,9 +79,10 @@
       background: linear-gradient(to top, var(--main-yellow) 45%, transparent 45%);
     }
 
+    /* ✅ 1. 히어로 이미지 크기만 축소 */
     .hero-img {
       width: 100%;
-      max-width: 420px;
+      max-width: 340px; /* 기존 420px */
       margin: 30px auto 10px;
       display: block;
     }
@@ -164,17 +165,20 @@
       text-decoration: none;
       margin-top: 25px;
     }
+
+    /* ✅ 2. 마지막 기준 섹션 글 간격만 확대 */
+    .final-standard p {
+      margin-bottom: 28px;
+      line-height: 1.95;
+    }
   </style>
 </head>
 
 <body>
 
-<!-- ① 히어로 : 브랜드 -->
 <div class="wrapper">
   <section style="padding-top:50px;">
-    <img src="bro-marketer-main.png"
-         alt="BRO MARKETER 형이야마케터 캐릭터"
-         class="hero-img">
+    <img src="bro-marketer-main.png" alt="BRO MARKETER 형이야마케터 캐릭터" class="hero-img">
 
     <h1>
       검색하면<br>
@@ -189,7 +193,6 @@
     </a>
   </section>
 
-  <!-- 문제 인식 -->
   <section>
     <h2>
       잘하는 가게는 많습니다.<br>
@@ -201,7 +204,6 @@
       신규 고객은 검색에서 결정합니다.
     </p>
 
-    <!-- 프로세스 -->
     <div class="process-container">
       <div class="process-card">
         <div class="step-tag">STEP 1</div>
@@ -237,20 +239,16 @@
     </div>
   </section>
 
-  <!-- 🔥 검색 결과 증거 -->
   <section>
     <h2>
       말로 설명하지 않습니다.<br>
       <span class="highlight">검색 화면으로 보여드립니다.</span>
     </h2>
 
-    <img src="proof-keyword.png"
-         alt="BRO MARKETER 실제 검색 결과 장악 사례"
-         class="proof-img">
+    <img src="proof-keyword.png" alt="BRO MARKETER 실제 검색 결과 장악 사례" class="proof-img">
   </section>
 </div>
 
-<!-- 후기 -->
 <div class="review-section">
   <div class="wrapper">
     <h2>검색 결과가 바뀐 뒤 실제 반응</h2>
@@ -263,12 +261,9 @@
   </div>
 </div>
 
-<!-- 신뢰 -->
 <div class="wrapper">
   <section>
-    <img src="bro-marketer-real.png"
-         alt="BRO MARKETER 형이야마케터 실사"
-         class="profile-img">
+    <img src="bro-marketer-real.png" alt="BRO MARKETER 형이야마케터 실사" class="profile-img">
 
     <h3>BRO MARKETER</h3>
 
@@ -289,8 +284,7 @@
     </p>
   </section>
 
-  <!-- 결정 -->
-  <section style="padding-bottom:120px; border-top:1px solid #eee;">
+  <section class="final-standard" style="padding-bottom:120px; border-top:1px solid #eee;">
     <h2>기준</h2>
 
     <p>
