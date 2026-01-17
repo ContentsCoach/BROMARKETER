@@ -20,7 +20,6 @@
       --text-gray:#444;
       --line-gray:#ededed;
       --bg-rule:#f7f7f7;
-      --bg-review:#fafafa;
     }
 
     body{
@@ -42,13 +41,14 @@
       padding:90px 0;
     }
 
-    /* HERO */
+    /* ===== HERO ===== */
     .hero{
-      min-height:100vh;
-      padding-top:80px;
+      min-height:100vh;          /* 핵심 */
+      padding-top:80px;          /* 주소창 고려 */
       padding-bottom:40px;
       display:flex;
       flex-direction:column;
+      justify-content:flex-start;
     }
 
     h1{
@@ -62,6 +62,12 @@
       font-size:1.6rem;
       font-weight:800;
       margin-bottom:36px;
+    }
+
+    h3{
+      font-size:1.3rem;
+      font-weight:800;
+      margin-bottom:32px;
     }
 
     p{
@@ -85,12 +91,12 @@
       width:100%;
       max-width:280px;
       margin:0 auto;
+      display:block;
     }
 
     .hero-brand{
       margin-top:32px;
       color:#666;
-      font-size:1rem;
     }
 
     .cta-btn{
@@ -102,10 +108,10 @@
       font-weight:900;
       border-radius:15px;
       text-decoration:none;
-      margin-top:auto;
+      margin-top:auto;           /* 버튼은 하단 쪽 */
     }
 
-    /* PROCESS */
+    /* ===== PROCESS ===== */
     .process-container{
       display:flex;
       flex-direction:column;
@@ -145,44 +151,15 @@
       margin-top:40px;
     }
 
-    /* REVIEW */
-    .review-section{
-      background:var(--bg-review);
-      padding:90px 0;
-    }
-
-    .review{
-      text-align:left;
-      margin-bottom:48px;
-    }
-
-    .review strong{
-      background:linear-gradient(to top,var(--main-yellow) 26%,transparent 26%);
-      font-weight:800;
-    }
-
-    .review span{
-      display:block;
-      margin-top:10px;
-      font-size:0.9rem;
-      color:#666;
-    }
-
-    /* PROFILE */
     .profile-img{
       width:100%;
       max-width:360px;
       border-radius:14px;
-      margin:0 auto 12px;
+      margin:0 auto 56px;
+      display:block;
     }
 
-    .profile-brand{
-      margin-bottom:32px;
-      color:#555;
-      font-size:0.95rem;
-    }
-
-    /* DIVIDER */
+    /* ===== DIVIDER ===== */
     .full-divider{
       width:100vw;
       height:1px;
@@ -191,7 +168,7 @@
       margin-left:calc(-50vw + 50%);
     }
 
-    /* RULE */
+    /* ===== RULE ===== */
     .rule-section{
       background:var(--bg-rule);
       padding:90px 0;
@@ -238,7 +215,7 @@
     </a>
   </section>
 
-  <!-- PROCESS -->
+  <!-- SECTION -->
   <section>
     <h2>
       잘하는 가게는 많습니다.<br>
@@ -256,16 +233,19 @@
         <div class="step-title">구조 정리</div>
         사장님 가게가 검색에 밀린 원인부터 봅니다.
       </div>
+
       <div class="process-card">
         <div class="step-tag">STEP 2</div>
         <div class="step-title">상단 노출</div>
         사장님 가게가 먼저 보이게 만듭니다.
       </div>
+
       <div class="process-card">
         <div class="step-tag">STEP 3</div>
         <div class="step-title">유지</div>
         상단 위치를 계속 유지합니다.
       </div>
+
       <div class="process-card">
         <div class="step-tag">STEP 4</div>
         <div class="step-title">결과</div>
@@ -274,7 +254,6 @@
     </div>
   </section>
 
-  <!-- PROOF -->
   <section>
     <h2>
       말로 설명하지 않습니다.<br>
@@ -282,49 +261,11 @@
     </h2>
     <img src="proof-keyword.png" class="proof-img">
   </section>
-</div>
 
-<!-- REVIEW (5개 전부) -->
-<div class="review-section">
-  <div class="wrapper">
-    <h2>검색 결과가 바뀐 뒤<br>현장에서 바로 나온 말들</h2>
-
-    <div class="review">
-      <strong>찔러보기 문의가 아예 없어졌어요.</strong>
-      <span>– PT샵 / 경기</span>
-    </div>
-
-    <div class="review">
-      <strong>가격 얘기 안 하고 예약부터 하더라고요.</strong>
-      <span>– 네일샵 / 경기</span>
-    </div>
-
-    <div class="review">
-      <strong>검색하면 우리 가게만 나온대요.</strong>
-      <span>– 미용실 / 서울</span>
-    </div>
-
-    <div class="review">
-      <strong>상담 없이 바로 결제합니다.</strong>
-      <span>– 학원 / 서울</span>
-    </div>
-
-    <div class="review">
-      <strong>글 보고 이미 믿고 왔다고 합니다.</strong>
-      <span>– 에스테틱 / 경기</span>
-    </div>
-  </div>
-</div>
-
-<div class="wrapper">
-  <!-- PROFILE -->
   <section>
     <img src="bro-marketer-real.png" class="profile-img">
 
-    <p class="profile-brand">
-      <strong>BRO MARKETER</strong><br>
-      형이야마케터
-    </p>
+    <h3>BRO MARKETER</h3>
 
     <p>
       직접 매장 운영했고<br>
